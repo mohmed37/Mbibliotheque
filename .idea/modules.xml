@@ -4,8 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/clientiu/clientiu.iml" filepath="$PROJECT_DIR$/clientiu/clientiu.iml" />
       <module fileurl="file://$PROJECT_DIR$/config-server/config-server.iml" filepath="$PROJECT_DIR$/config-server/config-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Mcommerce-SpringAdmin/config-server-repo/config-server-repo.iml" filepath="$PROJECT_DIR$/../Mcommerce-SpringAdmin/config-server-repo/config-server-repo.iml" />
       <module fileurl="file://$PROJECT_DIR$/microservice-librairie/microservice-librairie.iml" filepath="$PROJECT_DIR$/microservice-librairie/microservice-librairie.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/projet-bibliotheque.iml" filepath="$PROJECT_DIR$/.idea/projet-bibliotheque.iml" />
     </modules>
   </component>
 </project>
