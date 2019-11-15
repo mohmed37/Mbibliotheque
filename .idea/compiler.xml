@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="config-server" />
+        <module name="clientiu" />
+        <module name="microservice-librairie" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="client" target="1.8" />
+      <module name="clientiu" target="1.8" />
+      <module name="config-server" target="1.8" />
+      <module name="config-server-repo" target="1.8" />
+      <module name="microservice-librairie" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="client" options="-parameters" />
+      <module name="clientiu" options="-parameters" />
+      <module name="config-server" options="-parameters" />
+      <module name="config-server-repo" options="-parameters" />
+      <module name="microservice-librairie" options="-parameters" />
+    </option>
+  </component>
+</project>
