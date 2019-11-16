@@ -14,12 +14,13 @@ import java.util.List;
 public class ClientController {
     @Autowired
     MlibrairieProxy mlibrairieProxy;
+
     @RequestMapping("/")
-    public String accueil(Model model){
+    public String accueil(Model model) {
 
-        List<LibrairieBean>livres=mlibrairieProxy.listDesLivres();
+        List<LibrairieBean> livres = mlibrairieProxy.listDesLivres();
 
-        model.addAttribute("livres",livres);
+        model.addAttribute("livres", livres);
         return "Accueil";
     }
 

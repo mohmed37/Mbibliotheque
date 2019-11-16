@@ -20,19 +20,18 @@ public class LibrairieController {
 
     @GetMapping(value = "/librairies")
     public List<Librairie> listDesLivres() {
-        List<Librairie>livres=librairieRepository.findAll();
-      List<Librairie> listeLimitee=livres.subList(0,appConfigs.getLimitlivre());
+        List<Librairie> livres = librairieRepository.findAll();
+        List<Librairie> listeLimitee = livres.subList(0, appConfigs.getLimitlivre());
 
         return listeLimitee;
     }
 
 
     @GetMapping(value = "librairies/{id}")
-    public Optional<Librairie>recupererUnLivre(@PathVariable("id") long id){
-        Optional<Librairie>livre=librairieRepository.findById(id);
+    public Optional<Librairie> recupererUnLivre(@PathVariable("id") long id) {
+        Optional<Librairie> livre = librairieRepository.findById(id);
         return livre;
     }
-
 
 
 }

@@ -15,7 +15,8 @@ import java.util.Date;
 @ToString
 
 public class Librairie {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     String genre;
     String titre;
