@@ -12,6 +12,7 @@
         <option value="$PROJECT_DIR$/../bibliotheque/microservice-librairie/pom.xml" />
         <option value="$PROJECT_DIR$/microservice-utilisateur/pom.xml" />
         <option value="$PROJECT_DIR$/eureka-server/pom.xml" />
+        <option value="$PROJECT_DIR$/zuul-server/pom.xml" />
       </list>
     </option>
   </component>

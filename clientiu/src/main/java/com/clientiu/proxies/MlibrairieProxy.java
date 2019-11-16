@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
-@FeignClient(name = "microservice-librairie", url = "localhost:9000")
+@FeignClient(name="microservice-librairie", url = "localhost:9000")
 public interface MlibrairieProxy {
 
     @GetMapping(value = "librairies")
