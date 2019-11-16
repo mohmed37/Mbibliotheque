@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="config-server" />
         <module name="microservice-utilisateur" />
+        <module name="eureka-server" />
         <module name="clientiu" />
         <module name="microservice-librairie" />
       </profile>
@@ -18,6 +19,7 @@
       <module name="clientiu" target="1.8" />
       <module name="config-server" target="1.8" />
       <module name="config-server-repo" target="1.8" />
+      <module name="eureka-server" target="1.8" />
       <module name="microservice-librairie" target="1.8" />
       <module name="microservice-librairy" target="1.8" />
       <module name="microservice-user" target="1.8" />
@@ -31,6 +33,7 @@
       <module name="clientiu" options="-parameters" />
       <module name="config-server" options="-parameters" />
       <module name="config-server-repo" options="-parameters" />
+      <module name="eureka-server" options="-parameters" />
       <module name="microservice-librairie" options="-parameters" />
       <module name="microservice-librairy" options="-parameters" />
       <module name="microservice-user" options="-parameters" />
