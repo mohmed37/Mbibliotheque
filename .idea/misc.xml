@@ -13,6 +13,8 @@
         <option value="$PROJECT_DIR$/microservice-utilisateur/pom.xml" />
         <option value="$PROJECT_DIR$/eureka-server/pom.xml" />
         <option value="$PROJECT_DIR$/zuul-server/pom.xml" />
+        <option value="$PROJECT_DIR$/cilent/pom.xml" />
+        <option value="$PROJECT_DIR$/batch/pom.xml" />
       </list>
     </option>
   </component>

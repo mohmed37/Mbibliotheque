@@ -11,13 +11,16 @@
         <module name="config-server" />
         <module name="microservice-utilisateur" />
         <module name="zuul-server" />
-        <module name="clientiu" />
+        <module name="cilent" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="batch" target="1.8" />
       <module name="bibliotheque" target="1.8" />
+      <module name="cilent" target="1.8" />
       <module name="client" target="1.8" />
       <module name="clientiu" target="1.8" />
+      <module name="common" target="1.8" />
       <module name="config-server" target="1.8" />
       <module name="config-server-repo" target="1.8" />
       <module name="eureka-server" target="1.8" />
@@ -30,9 +33,12 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="batch" options="-parameters" />
       <module name="bibliotheque" options="-parameters" />
+      <module name="cilent" options="-parameters" />
       <module name="client" options="-parameters" />
       <module name="clientiu" options="-parameters" />
+      <module name="common" options="-parameters" />
       <module name="config-server" options="-parameters" />
       <module name="config-server-repo" options="-parameters" />
       <module name="eureka-server" options="-parameters" />

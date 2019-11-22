@@ -9,5 +9,4 @@ class ClientiuApplicationTests {
     @Test
     void contextLoads() {
     }
-
 }

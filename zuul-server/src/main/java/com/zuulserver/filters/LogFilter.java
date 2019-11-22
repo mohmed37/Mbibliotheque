@@ -31,7 +31,7 @@ public class LogFilter  extends ZuulFilter {
     @Override
     public Object run() throws ZuulException {
         HttpServletRequest req= RequestContext.getCurrentContext().getRequest();
-        log.info("Requête interceptée"+req.getRequestURL());
+        log.info("*****Requête interceptée"+req.getRequestURL());
         return null;
     }
 }
