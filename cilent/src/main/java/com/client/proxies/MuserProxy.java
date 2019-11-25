@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-@FeignClient(name="microservice-utilisateur")
+@FeignClient(name="zuul-server")
 @RibbonClient(name = "microservice-utilisateur")
 public interface MuserProxy {
 

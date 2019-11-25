@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@FeignClient(name="zull-server",url = "http://localhost:9004")
+@FeignClient(name="zuul-server")
+@RibbonClient("microservice-librairie")
 
 public interface MlibrairieProxy {
 
