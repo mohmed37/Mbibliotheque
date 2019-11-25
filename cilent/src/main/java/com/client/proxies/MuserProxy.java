@@ -11,13 +11,13 @@ import java.util.List;
 @RibbonClient(name = "microservice-utilisateur")
 public interface MuserProxy {
 
-    @GetMapping(value = "/users")
+    @GetMapping(value = "/microservice-utilisateur/users")
     List<UserBean> listUsers();
 
-    @GetMapping(value = "/user/{num}")
+    @GetMapping(value = "/microservice-utilisateur/user/{num}")
     UserBean getUser(@PathVariable("num") int num);
 
-    @PostMapping(value = "/saveUser" )
+    @PostMapping(value = "/microservice-utilisateur/saveUser" )
     ResponseEntity<UserBean> saveUser(@RequestBody UserBean user);
 
     @PutMapping(value = "/microservice-utilisateur/modif")

@@ -28,7 +28,7 @@ public interface MlibrairieProxy {
 
     LibrairieBean updatelivre(@RequestBody LibrairieBean librairie);
 
-    @DeleteMapping(value = "/delete/{id}")
+    @DeleteMapping(value = "/microservice-librairie/delete/{id}")
      LibrairieBean deletelivre(@PathVariable("id") Long id);
 
 

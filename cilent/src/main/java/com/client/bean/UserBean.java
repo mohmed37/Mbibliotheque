@@ -19,6 +19,7 @@ public class UserBean {
     String userName;
     String password;
     String matchingPassword;
+    String email;
     String phone;
     Date date;
 
@@ -31,6 +32,7 @@ public class UserBean {
         sb.append(", userName='").append(userName).append('\'');
         sb.append(", password='").append(password).append('\'');
         sb.append(", matchingPassword='").append(matchingPassword).append('\'');
+        sb.append(", email='").append(email).append('\'');
         sb.append(", phone='").append(phone).append('\'');
         sb.append(", date=").append(date);
         sb.append('}');

@@ -18,7 +18,7 @@ public class UserController {
   @Autowired
     UserRepository userRepository;
 
-    @GetMapping("/admin")
+  /*  @GetMapping("/admin")
     public String admin() {
         return "Hello Admin!";
     }
@@ -31,7 +31,7 @@ public class UserController {
     @GetMapping("/guest")
     public String guest() {
         return "Hello Guest!";
-    }
+    }*/
 
     @DeleteMapping(value = "/delete/{num}")
     public void deleteUser(@PathVariable("num")long num) {
@@ -46,7 +46,7 @@ public class UserController {
         return user;
     }
 
-    @GetMapping(name ="/users")
+    @GetMapping(value ="/users")
     public List<User> listUsers(){
         List<User>users=userRepository.findAll();
         return users;
