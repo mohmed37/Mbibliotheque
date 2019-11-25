@@ -9,10 +9,9 @@ import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 
-
 @Component
-public class LogFilter  extends ZuulFilter {
-    Logger log = LoggerFactory.getLogger(this.getClass());
+public class LogFilter extends ZuulFilter {
+Logger logger = LoggerFactory.getLogger(this.getClass());
     @Override
     public String filterType() {
         return "pre";
@@ -30,8 +29,8 @@ public class LogFilter  extends ZuulFilter {
 
     @Override
     public Object run() throws ZuulException {
-        HttpServletRequest req= RequestContext.getCurrentContext().getRequest();
-        log.info("*****Requête interceptée"+req.getRequestURL());
+        HttpServletRequest request = RequestContext.getCurrentContext().getRequest();
+      logger.info("*****Requête interceptée" + request.getRequestURL());
         return null;
     }
 }
