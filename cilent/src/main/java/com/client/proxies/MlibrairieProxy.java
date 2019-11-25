@@ -3,13 +3,15 @@ package com.client.proxies;
 
 
 import com.client.bean.LibrairieBean;
+import org.springframework.cloud.netflix.ribbon.RibbonClient;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@FeignClient(name="zuul-server", url = "localhost:9004")
+@FeignClient(name="zull-server",url = "http://localhost:9004")
+
 public interface MlibrairieProxy {
 
     @GetMapping(value = "/microservice-librairie/librairies")
