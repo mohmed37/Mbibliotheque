@@ -23,6 +23,7 @@ public class UserBean {
     String phone;
     Date date;
 
+
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("UserBean{");

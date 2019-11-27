@@ -5,6 +5,7 @@ package com.client.proxies;
 import com.client.bean.LibrairieBean;
 import org.springframework.cloud.netflix.ribbon.RibbonClient;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +23,7 @@ public interface MlibrairieProxy {
     LibrairieBean recupererUnLivre(@PathVariable("id") int id);
 
     @PostMapping(value = "/microservice-librairie/saveLivre" )
-   ResponseEntity<LibrairieBean> saveLivre(@RequestBody LibrairieBean librairie);
+    ResponseEntity<LibrairieBean> saveLivre(@RequestBody LibrairieBean livre);
 
     @PutMapping(value = "/microservice-librairie/modif")
 
@@ -31,7 +32,12 @@ public interface MlibrairieProxy {
     @DeleteMapping(value = "/microservice-librairie/delete/{id}")
      LibrairieBean deletelivre(@PathVariable("id") Long id);
 
+    @RequestMapping(value = "/getPhoto",produces = MediaType.IMAGE_JPEG_VALUE)
+    @ResponseBody
+    byte[] getPhoto(String id);
+    }
 
 
 
-}
+
+

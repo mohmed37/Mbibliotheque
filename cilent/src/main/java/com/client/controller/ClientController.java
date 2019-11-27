@@ -7,9 +7,13 @@ import com.client.proxies.MuserProxy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 @Controller
@@ -19,10 +23,11 @@ public class ClientController {
     @Autowired
     MuserProxy muserProxy;
 
+
     Logger log = LoggerFactory.getLogger(this.getClass());
 
 
-    @RequestMapping("/")
+    @RequestMapping("/librairie")
     public String accueil(Model model) {
 
         log.info("Envoi requête vers microservice-produits");
@@ -41,4 +46,14 @@ public class ClientController {
 
         return "user";
     }
+    @RequestMapping("/form")
+    public String saveLivre(Model model){
+        LibrairieBean livre =new LibrairieBean();
+        model.addAttribute("livre",livre);
+        mlibrairieProxy.saveLivre(livre);
+
+        return "formLivre";
+    }
+
+
 }

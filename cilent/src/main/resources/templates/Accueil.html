@@ -3,6 +3,8 @@
 <head>
 
     <link rel="stylesheet" type="text/css" href="webjars/bootstrap/4.0.0-2/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/css/myStyle.css"/>
+
     <title>Mlibrairie</title>
     <style>
 
@@ -146,16 +148,18 @@
     <h1>Application librairie</h1>
     <div class="row">
         <div th:each="livre : ${livres}" class="col-md-4 my-1">
-            <a th:href="@{|/details-livre/${livre.id}|}">
+<!--            <a th:href="@{|/details-livre/${livre.id}|}">-->
                 <p th:text="${livre.titre}"></p>
-                <p th:text="${livre.auteur}"></p>
                 <p th:text="${livre.genre}"></p>
+                <p th:text="${livre.auteur}"></p>
                 <p th:text="${livre.dateDeb}"></p>
                 <p th:text="${livre.dateFin}"></p>
                 <p th:text="${livre.NExemplaire}"></p>
                 <p th:text="${livre.status}"></p>
                 <p th:text="${livre.resume}"></p>
-            </a>
+                <img th:src="@{getPhoto(id=${livre.id})}"/>
+
+
         </div>
     </div>
 

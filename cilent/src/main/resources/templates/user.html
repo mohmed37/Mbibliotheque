@@ -11,7 +11,7 @@
     <h1>Utilisateurs</h1>
     <div class="row">
         <div th:each="user : ${users}" class="col-md-4 my-1">
-            <a th:href="@{|/details-utilisateur/${user.num}|}">
+<!--            <a th:href="@{|/details-utilisateur/${user.num}|}">-->
                 <p th:text="${user.prenom}"></p>
                 <p th:text="${user.nom}"></p>
                 <p th:text="${user.userName}"></p>
@@ -20,6 +20,7 @@
                 <p th:text="${user.phone}"></p>
                 <p th:text="${user.date}"></p>
                 <p th:text="${user.email}"></p>
+
             </a>
         </div>
     </div>

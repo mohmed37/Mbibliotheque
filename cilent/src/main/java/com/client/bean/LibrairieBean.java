@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -23,6 +24,7 @@ public class LibrairieBean {
     Boolean status;
     Date dateDeb;
     Date dateFin;
+    String photo;
 
     @Override
     public String toString() {
@@ -36,6 +38,7 @@ public class LibrairieBean {
         sb.append(", status=").append(status);
         sb.append(", dateDeb=").append(dateDeb);
         sb.append(", dateFin=").append(dateFin);
+        sb.append(", photo='").append(photo).append('\'');
         sb.append('}');
         return sb.toString();
     }
