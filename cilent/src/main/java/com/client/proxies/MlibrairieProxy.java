@@ -22,8 +22,8 @@ public interface MlibrairieProxy {
     @GetMapping(value = "/microservice-librairie/librairies/{id}")
     LibrairieBean recupererUnLivre(@PathVariable("id") int id);
 
-    @PostMapping(value = "/microservice-librairie/saveLivre" )
-    ResponseEntity<LibrairieBean> saveLivre(@RequestBody LibrairieBean livre);
+    @PostMapping(value = "/microservice-librairie/librairies" )
+    LibrairieBean saveLivre(@RequestBody LibrairieBean livre);
 
     @PutMapping(value = "/microservice-librairie/modif")
 
@@ -32,7 +32,7 @@ public interface MlibrairieProxy {
     @DeleteMapping(value = "/microservice-librairie/delete/{id}")
      LibrairieBean deletelivre(@PathVariable("id") Long id);
 
-    @RequestMapping(value = "/getPhoto",produces = MediaType.IMAGE_JPEG_VALUE)
+    @RequestMapping(value = "getPhoto",produces = MediaType.IMAGE_JPEG_VALUE)
     @ResponseBody
     byte[] getPhoto(String id);
     }

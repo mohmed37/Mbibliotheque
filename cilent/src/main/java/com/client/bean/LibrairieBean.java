@@ -22,7 +22,9 @@ public class LibrairieBean {
     String resume;
     Integer nExemplaire;
     Boolean status;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     Date dateDeb;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     Date dateFin;
     String photo;
 
