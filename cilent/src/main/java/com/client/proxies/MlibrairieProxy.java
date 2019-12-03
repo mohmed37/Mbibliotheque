@@ -5,6 +5,7 @@ package com.client.proxies;
 import com.client.bean.LibrairieBean;
 import org.springframework.cloud.netflix.ribbon.RibbonClient;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,13 @@ import java.util.List;
 public interface MlibrairieProxy {
 
     @GetMapping(value = "/microservice-librairie/librairies")
-    List<LibrairieBean> listDesLivres();
+    List<LibrairieBean> listDesLivres(@RequestParam(name = "motClefAuteur",defaultValue ="") String motClefAuteur,
+                                      @RequestParam(name = "motClefTitre",defaultValue ="") String motClefTitre/*,
+                                      @RequestParam(name="page",defaultValue = "0")int page,
+                                      @RequestParam(name="size",defaultValue = "5")int size*/
+                                    );
+   // List<LibrairieBean> listDesLivres();
+
 
     @GetMapping(value = "/microservice-librairie/librairies/{id}")
     LibrairieBean recupererUnLivre(@PathVariable("id") int id);

@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -34,15 +35,22 @@ public class ClientController {
     Logger log = LoggerFactory.getLogger(this.getClass());
 
 
-    @RequestMapping( "/")
-    public String accueil(Model model) {
-
+    @RequestMapping("/")
+    public String accueil(Model model,@RequestParam(name = "motClefAuteur",defaultValue ="") String motClefAuteur,
+                          @RequestParam(name = "motClefTitre",defaultValue ="") String motClefTitre
+                         /* ,@RequestParam(name="page",defaultValue = "0")int page,
+                          @RequestParam(name="size",defaultValue = "5")int size*/) {
         log.info("Envoi requête vers microservice-produits");
-        List<LibrairieBean> livres = mlibrairieProxy.listDesLivres();
-        model.addAttribute("livres", livres);
+       List<LibrairieBean> livres = mlibrairieProxy.listDesLivres( motClefAuteur,motClefTitre/*,page,size*/);
+       // List<LibrairieBean> livres = mlibrairieProxy.listDesLivres();
+        model.addAttribute("Livres", livres);
+        model.addAttribute("motClefAuteur",motClefAuteur);
+        model.addAttribute("motClefTitre",motClefTitre);
+
 
         return "Accueil";
     }
+
 
     @RequestMapping("/users")
     public String user(Model model) {

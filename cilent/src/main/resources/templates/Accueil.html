@@ -1,16 +1,9 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-
     <meta charset="utf-8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/4.0.0-2/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="../static/css/css/myStyle.css"/>
-    <link rel="stylesheet" type="text/css" href="../static/css/css/myStyle.css"/>
-
     <title>Mlibrairie</title>
     <style>
 
@@ -148,20 +141,30 @@
     </nav>
 
 </div>
+<div class="container spacer">
+    <form th:action="@{/}" method="get">
+        <div class="form-group">
+            <label>Rechercher avec le titre:</label>
+            <input type="text" name="motClefTitre"/>
+            <label>Rechercher avec l'auteur</label>
+            <input type="text" name="motClefAuteur"/>
+            <button type="submit">Chercher</button>
+
+    </form>
+
+</div>
 
 <div class="container">
 
     <h1>Application librairie</h1>
     <div class="row">
-        <div th:each="livre : ${livres}" class="col-md-4 my-1">
-<!--            <a th:href="@{|/details-livre/${livre.id}|}">-->
+        <div th:each="livre : ${Livres}" class="col-md-4 my-1">
                 <p th:text="${livre.titre}"></p>
                 <p th:text="${livre.genre}"></p>
                 <p th:text="${livre.auteur}"></p>
                 <p th:text="${livre.dateDeb}"></p>
                 <p th:text="${livre.dateFin}"></p>
                 <p th:text="${livre.NExemplaire}"></p>
-                <p th:text="${livre.status}"></p>
                 <p th:text="${livre.resume}"></p>
                 <img th:src="@{getPhoto(id=${livre.id})}"/>
 
