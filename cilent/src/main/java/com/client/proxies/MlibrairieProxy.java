@@ -23,7 +23,8 @@ public interface MlibrairieProxy {
                                       @RequestParam(name="page",defaultValue = "0")int page,
                                       @RequestParam(name="size",defaultValue = "5")int size*/
                                     );
-   // List<LibrairieBean> listDesLivres();
+//    List<LibrairieBean> listDesLivres();
+
 
 
     @GetMapping(value = "/microservice-librairie/librairies/{id}")

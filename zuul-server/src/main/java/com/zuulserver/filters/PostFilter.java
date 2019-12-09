@@ -1,7 +1,9 @@
 package com.zuulserver.filters;
 
 import com.netflix.zuul.ZuulFilter;
+import org.springframework.stereotype.Component;
 
+@Component
 public class PostFilter extends ZuulFilter {
 
   @Override
