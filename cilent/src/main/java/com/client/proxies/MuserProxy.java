@@ -1,44 +1,21 @@
 package com.client.proxies;
 
-import com.client.bean.RoleBean;
+
 import com.client.bean.UserBean;
 import org.springframework.cloud.netflix.ribbon.RibbonClient;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Optional;
 
 @FeignClient(name="zuul-server")
 @RibbonClient(name = "microservice-utilisateur")
 public interface MuserProxy {
 
-    @GetMapping(value = "/microservice-utilisateur/users")
-    List<UserBean> listUsers();
+ /*   @PostMapping(value = "/microservice-utilisateur/users")
+    Optional<UserBean> findById(Long num);*/
 
-    @PostMapping(value ="/microservice-utilisateur/saveUser")
-    UserBean saveUser(@RequestBody UserBean user);
-
-    @PostMapping(value ="/microservice-utilisateur/saveRole")
-    UserBean saveRole(@RequestBody RoleBean role);
-
-    /*@PostMapping(value ="/microservice-utilisateur/saveRoleUser")
-    UserBean ddRoleToUser(String username, String roleName);
-*/
     @PostMapping(value ="/microservice-utilisateur/username")
-    UserBean findUserByUsername(String username);
+    UserBean findUserByUsername( @RequestParam(name = "username",defaultValue ="")String username);
 
-    @GetMapping(value ="/microservice-utilisateur/saveRolename")
-    RoleBean findUserByRolename(String rolename);
-
-  /*  @GetMapping(value = "/microservice-utilisateur/user/{num}")
-    UserBean getUser(@PathVariable("num") int num);
-
-    @PostMapping(value = "/microservice-utilisateur/saveUser" )
-    ResponseEntity<UserBean> saveUser(@RequestBody UserBean user);
-
-    @PutMapping(value = "/microservice-utilisateur/modif")
-    UserBean updateUser(@RequestBody UserBean user);
-
-    @DeleteMapping(value = "/microservice-utilisateur/delete/{num}")
-    UserBean deleteUser(@PathVariable("num") Long num);*/
 }

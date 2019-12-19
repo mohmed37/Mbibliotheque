@@ -27,6 +27,7 @@ public class LibrairieBean {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     Date dateFin;
     String photo;
+    Long location;
 
     @Override
     public String toString() {
@@ -41,6 +42,7 @@ public class LibrairieBean {
         sb.append(", dateDeb=").append(dateDeb);
         sb.append(", dateFin=").append(dateFin);
         sb.append(", photo='").append(photo).append('\'');
+        sb.append(", idUserLocation=").append(location);
         sb.append('}');
         return sb.toString();
     }

@@ -7,26 +7,55 @@
     <title>Title</title>
 </head>
 <body>
+
+<div class="container">
+    <div class="row">
+
+        <h2>Liste des utilisateurs</h2>
+        <table class="table table-striped">
+            <thead class="thead-light">
+            <tr>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Identifianr</th>
+                <th>Mot de passe</th>
+                <th>Téléphone</th>
+                <th>Date</th>
+                <th>E-Mail</th>
+            </tr>
+            </thead>
+
+                    <td th:text="${userConnect.prenom}">
+                    <td th:text="${userConnect.nom}"></td>
+                    <td th:text="${userConnect.username}"></td>
+                    <td th:text="${userConnect.password}" ></td>
+                    <td th:text="${userConnect.phone}"></td>
+                    <td th:text="${userConnect.date}"></td>
+                    <td th:text="${userConnect.email}"></td>
+
+        </table>
+    </div>
+</div>
 <div class="container">
 
-    <h1>Utilisateurs</h1>
+    <h1>Application librairie</h1>
     <div class="row">
-        <div th:each="user : ${users}" class="col-md-4 my-1">
-<!--            <a th:href="@{|/details-utilisateur/${user.num}|}">-->
-                <p th:text="${user.prenom}"></p>
-                <p th:text="${user.nom}"></p>
-                <p th:text="${user.username}"></p>
-                <p th:text="${user.password}"></p>
-                <p th:text="${user.matchingPassword}"></p>
-                <p th:text="${user.phone}"></p>
-                <p th:text="${user.date}"></p>
-                <p th:text="${user.email}"></p>
+        <div th:each="livre : ${Livres}" class="col-md-4 my-1">
+            <p th:text="${livre.titre}"></p>
+            <p th:text="${livre.genre}"></p>
+            <p th:text="${livre.auteur}"></p>
+            <p th:text="${livre.dateDeb}"></p>
+            <p th:text="${livre.dateFin}"></p>
+            <p th:text="${livre.NExemplaire}"></p>
+            <p th:text="${livre.resume}"></p>
 
-            </a>
+
+
         </div>
     </div>
 
 </div>
+
 <script type="text/javascript" src="webjars/bootstrap/4.0.0-2/js/bootstrap.min.js"></script>
 </body>
 </html>

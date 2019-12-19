@@ -11,6 +11,9 @@
 
 </head>
 <body>
+<p th:text="${userConnect.nom != null ? userConnect.nom: ''}"></P>
+<p th:text="${userConnect.prenom != null ? userConnect.prenom: ''}"></P>
+
 <div class="col-md-6 col-xs-12 spacer col-md-offset-3">
 <div class="panel panel-default" >
     <div class="panel-heading"> Saisie d'un livre</div>

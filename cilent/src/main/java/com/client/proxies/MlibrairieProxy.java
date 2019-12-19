@@ -23,8 +23,11 @@ public interface MlibrairieProxy {
                                       @RequestParam(name="page",defaultValue = "0")int page,
                                       @RequestParam(name="size",defaultValue = "5")int size*/
                                     );
-//    List<LibrairieBean> listDesLivres();
+    @GetMapping(value = "/microservice-librairie/librairies")
+    List<LibrairieBean> listDesLivres1();
 
+    @GetMapping(value = "/microservice-librairie/location")
+    List<LibrairieBean> findByLocation(@RequestParam(name = "num") long num);
 
 
     @GetMapping(value = "/microservice-librairie/librairies/{id}")
@@ -34,7 +37,6 @@ public interface MlibrairieProxy {
     LibrairieBean saveLivre(@RequestBody LibrairieBean livre);
 
     @PutMapping(value = "/microservice-librairie/modif")
-
     LibrairieBean updatelivre(@RequestBody LibrairieBean librairie);
 
     @DeleteMapping(value = "/microservice-librairie/delete/{id}")

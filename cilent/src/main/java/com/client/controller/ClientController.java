@@ -4,6 +4,7 @@ import com.client.bean.LibrairieBean;
 import com.client.bean.UserBean;
 import com.client.proxies.MlibrairieProxy;
 import com.client.proxies.MuserProxy;
+import com.client.service.UserService;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +22,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
+
 @Controller
 public class ClientController {
     @Autowired
@@ -29,6 +32,8 @@ public class ClientController {
     MuserProxy muserProxy;
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Autowired
+    UserService userService;
 
     @Value("${dir.images}")
     private String imageDir;
@@ -45,7 +50,8 @@ public class ClientController {
        List<LibrairieBean> livres = mlibrairieProxy.listDesLivres( motClefAuteur,motClefTitre/*,page,size*/);
 //        List<LibrairieBean> livres = mlibrairieProxy.listDesLivres();
         model.addAttribute("Livres", livres);
-      /*  model.addAttribute("motClefAuteur",motClefAuteur);
+
+        /*  model.addAttribute("motClefAuteur",motClefAuteur);
         model.addAttribute("motClefTitre",motClefTitre);*/
         return "Accueil";
     }
@@ -55,12 +61,16 @@ public class ClientController {
     }
 
 
-    @RequestMapping("/users")
+    @RequestMapping("/userLocation")
     public String user(Model model) {
-
         log.info("Envoi requête vers microservice-utilisateur");
-        UserBean users = muserProxy.findUserByUsername("loic");
-        model.addAttribute("users", users);
+
+        UserBean userConnec=userService.getUserConnec();
+        model.addAttribute("userConnect", userConnec);
+
+      List<LibrairieBean> livresLocation = mlibrairieProxy.findByLocation(userConnec.getNum());
+      //  List<LibrairieBean> livresLocation = mlibrairieProxy.findAll();
+        model.addAttribute("Livres", livresLocation);
 
         return "user";
     }
@@ -71,6 +81,8 @@ public class ClientController {
     public String formLivre(Model model){
         LibrairieBean livre =new LibrairieBean();
         model.addAttribute("livre",livre);
+        UserBean userConnec=userService.getUserConnec();
+        model.addAttribute("userConnect",userConnec);
         return "formLivre";
     }
 
@@ -97,17 +109,6 @@ public class ClientController {
 
     }
     @RequestMapping(value ="/username")
-    public UserBean findUserByUsername(String username) {
-       /* UserBean user =muserProxy.findUserByUsername(username);
-        String passwordB = bCryptPasswordEncoder.encode(user.getPassword());
-
-        if(username.equalsIgnoreCase(user.getUsername())) {
-            return new UserBean( user.getUsername(), passwordB);
-        }
-       *//* String passwordB = bCryptPasswordEncoder.encode("12345");
-        if(username.equalsIgnoreCase("admin")) {
-            return new AppUser( "admin123", passwordB);
-        }*/
-
-        return muserProxy.findUserByUsername(username);}
+    public UserBean findUserByUsername(@RequestParam(name = "username",defaultValue ="") String username) {
+       return muserProxy.findUserByUsername(username);}
 }
