@@ -10,6 +10,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -21,6 +24,7 @@ import javax.validation.Valid;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,15 +48,15 @@ public class ClientController {
     @RequestMapping("/")
     public String accueil(Model model,@RequestParam(name = "motClefAuteur",defaultValue ="") String motClefAuteur,
                           @RequestParam(name = "motClefTitre",defaultValue ="") String motClefTitre
-                         /* ,@RequestParam(name="page",defaultValue = "0")int page,
-                          @RequestParam(name="size",defaultValue = "5")int size*/) {
+                          ,@RequestParam(name="page",defaultValue = "0")int page,
+                          @RequestParam(name="size",defaultValue = "3")int size) {
         log.info("Envoi requête vers microservice-produits");
-       List<LibrairieBean> livres = mlibrairieProxy.listDesLivres( motClefAuteur,motClefTitre/*,page,size*/);
-//        List<LibrairieBean> livres = mlibrairieProxy.listDesLivres();
-        model.addAttribute("Livres", livres);
-
-        /*  model.addAttribute("motClefAuteur",motClefAuteur);
-        model.addAttribute("motClefTitre",motClefTitre);*/
+        List<LibrairieBean> pageLivres = mlibrairieProxy.listDesLivres( motClefAuteur,motClefTitre,page,size);
+      /*  int pagesCount=pageLivres.getTotalPages();
+        int[]pages=new int[pagesCount];
+        for (int i=0;i<pagesCount;i++) pages[i]=i;
+        model.addAttribute("pages",pages);*/
+        model.addAttribute("pageLivres", pageLivres);
         return "Accueil";
     }
     @RequestMapping("/login")
@@ -69,8 +73,9 @@ public class ClientController {
         model.addAttribute("userConnect", userConnec);
 
       List<LibrairieBean> livresLocation = mlibrairieProxy.findByLocation(userConnec.getNum());
-      //  List<LibrairieBean> livresLocation = mlibrairieProxy.findAll();
-        model.addAttribute("Livres", livresLocation);
+      model.addAttribute("Livres", livresLocation);
+
+
 
         return "user";
     }
@@ -111,4 +116,13 @@ public class ClientController {
     @RequestMapping(value ="/username")
     public UserBean findUserByUsername(@RequestParam(name = "username",defaultValue ="") String username) {
        return muserProxy.findUserByUsername(username);}
+
+
+    @RequestMapping(value = "/prolongation")
+    public String prolongation(long id){
+           mlibrairieProxy.prolongation(id);
+
+        return "redirect:/userLocation";
+    }
+
 }

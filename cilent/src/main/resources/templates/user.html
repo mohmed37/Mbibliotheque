@@ -2,7 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/4.0.0-2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../static/css/css/myStyle.css"/>
     <title>Title</title>
 </head>
@@ -25,7 +26,7 @@
             </tr>
             </thead>
 
-                    <td th:text="${userConnect.prenom}">
+                    <td th:text="${userConnect.prenom}"></td>
                     <td th:text="${userConnect.nom}"></td>
                     <td th:text="${userConnect.username}"></td>
                     <td th:text="${userConnect.password}" ></td>
@@ -37,25 +38,29 @@
     </div>
 </div>
 <div class="container">
-
-    <h1>Application librairie</h1>
     <div class="row">
-        <div th:each="livre : ${Livres}" class="col-md-4 my-1">
-            <p th:text="${livre.titre}"></p>
-            <p th:text="${livre.genre}"></p>
-            <p th:text="${livre.auteur}"></p>
-            <p th:text="${livre.dateDeb}"></p>
-            <p th:text="${livre.dateFin}"></p>
-            <p th:text="${livre.NExemplaire}"></p>
-            <p th:text="${livre.resume}"></p>
+        <table class="table table-striped">
+            <thead class="thead-light">
+            <tr>
+                <th>Titre</th>
+                <th>Date d'emprunt </th>
+                <th>Date de restitution</th>
 
+            </tr>
+            </thead>
+            <tbody>
+        <tr th:each="livre : ${Livres}" class="col-md-4 my-1">
+            <td th:text="${livre.titre}"></td>
+            <td th:text="${livre.getDateCreatedString(livre.dateDeb)}"></td>
+            <td th:text="${livre.getDateCreatedString(livre.dateFin)}"></td>
+            <td><a th:href="@{prolongation(id=${livre.id})}">Prolongation</a></td>
+        </tr>
 
+          </tbody>
 
-        </div>
+        </table>
     </div>
-
 </div>
 
-<script type="text/javascript" src="webjars/bootstrap/4.0.0-2/js/bootstrap.min.js"></script>
 </body>
 </html>

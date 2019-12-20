@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Data
@@ -28,6 +30,13 @@ public class LibrairieBean {
     Date dateFin;
     String photo;
     Long location;
+
+
+    public String getDateCreatedString(Date date) {
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        return df.format(date);
+    }
+
 
     @Override
     public String toString() {

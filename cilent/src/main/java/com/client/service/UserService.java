@@ -1,19 +1,27 @@
 package com.client.service;
 
+import com.client.bean.LibrairieBean;
 import com.client.bean.UserBean;
 import com.client.controller.ClientController;
+import com.client.proxies.MlibrairieProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 @Service
 @Transactional
 public class UserService implements IUserService{
     @Autowired
     ClientController controller;
+    @Autowired
+    MlibrairieProxy mlibrairieProxy;
 
 
     @Override
@@ -29,4 +37,13 @@ public class UserService implements IUserService{
         return null;
 
     }
+
+    public String getDateCreatedString(Date date) {
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        return df.format(date);
+    }
+
+
+
+
 }
