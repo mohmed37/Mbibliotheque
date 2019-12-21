@@ -10,9 +10,9 @@
         <module name="microservice-librairie" />
         <module name="config-server" />
         <module name="microservice-utilisateur" />
-        <module name="microervice-batch" />
         <module name="zuul-server" />
-        <module name="cilent" />
+        <module name="microervice-batch" />
+        <module name="client" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

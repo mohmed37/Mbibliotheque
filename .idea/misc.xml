@@ -13,9 +13,9 @@
         <option value="$PROJECT_DIR$/microservice-utilisateur/pom.xml" />
         <option value="$PROJECT_DIR$/eureka-server/pom.xml" />
         <option value="$PROJECT_DIR$/zuul-server/pom.xml" />
-        <option value="$PROJECT_DIR$/cilent/pom.xml" />
         <option value="$PROJECT_DIR$/batch/pom.xml" />
         <option value="$PROJECT_DIR$/microervice-batch/pom.xml" />
+        <option value="$PROJECT_DIR$/cilent/pom.xml" />
       </list>
     </option>
   </component>
