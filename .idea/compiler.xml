@@ -10,8 +10,8 @@
         <module name="microservice-librairie" />
         <module name="config-server" />
         <module name="microservice-utilisateur" />
-        <module name="zuul-server" />
         <module name="microervice-batch" />
+        <module name="zuul-server" />
         <module name="client" />
       </profile>
     </annotationProcessing>
@@ -30,6 +30,7 @@
       <module name="microservice-librairy" target="1.8" />
       <module name="microservice-user" target="1.8" />
       <module name="microservice-utilisateur" target="1.8" />
+      <module name="Quartz2Example" target="1.6" />
       <module name="zuul-server" target="1.8" />
     </bytecodeTargetLevel>
   </component>

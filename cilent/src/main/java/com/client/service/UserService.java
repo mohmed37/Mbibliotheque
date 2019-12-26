@@ -14,6 +14,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 @Service
 @Transactional
@@ -38,12 +39,10 @@ public class UserService implements IUserService{
 
     }
 
-    public String getDateCreatedString(Date date) {
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        return df.format(date);
+    @Override
+    public void DatePasse( long id) {
+        Date dateJour=new Date();
+        if(mlibrairieProxy.recupererUnLivre(id).getDateFin().after(dateJour)){
+            mlibrairieProxy.recupererUnLivre(id).setProlongation(false);}
     }
-
-
-
-
 }

@@ -30,6 +30,7 @@ public class LibrairieBean {
     Date dateFin;
     String photo;
     Long location;
+    Boolean prolongation;
 
 
     public String getDateCreatedString(Date date) {

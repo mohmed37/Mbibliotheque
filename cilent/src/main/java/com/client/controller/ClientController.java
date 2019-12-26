@@ -2,17 +2,15 @@ package com.client.controller;
 
 import com.client.bean.LibrairieBean;
 import com.client.bean.UserBean;
+import com.client.proxies.MbatchProxy;
 import com.client.proxies.MlibrairieProxy;
 import com.client.proxies.MuserProxy;
-import com.client.service.UserService;
+import com.client.service.IUserService;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -24,9 +22,8 @@ import javax.validation.Valid;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class ClientController {
@@ -35,9 +32,11 @@ public class ClientController {
     @Autowired
     MuserProxy muserProxy;
     @Autowired
+    MbatchProxy mbatchProxy;
+    @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
     @Autowired
-    UserService userService;
+    IUserService userService;
 
     @Value("${dir.images}")
     private String imageDir;
@@ -75,8 +74,8 @@ public class ClientController {
       List<LibrairieBean> livresLocation = mlibrairieProxy.findByLocation(userConnec.getNum());
       model.addAttribute("Livres", livresLocation);
 
-
-
+   Date dateJour=new Date();
+        model.addAttribute("dateJour",dateJour);
         return "user";
     }
 
@@ -124,5 +123,13 @@ public class ClientController {
 
         return "redirect:/userLocation";
     }
+    @RequestMapping(value = "/mail")
+    @ResponseBody
+    public void envoiMail(){
+        mbatchProxy.sendEmail();
+       }
+
+
+
 
 }
