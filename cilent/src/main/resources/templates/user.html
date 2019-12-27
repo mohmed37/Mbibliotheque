@@ -51,12 +51,13 @@
             </tr>
             </thead>
             <tbody>
-        <tr th:each="livre : ${Livres}" class="col-md-4 my-1">
-            <td th:text="${livre.titre}"></td>
-            <td th:text="${livre.getDateCreatedString(livre.dateDeb)}" ></td>
-            <td id="dateFin" th:text="${livre.getDateCreatedString(livre.dateFin)}"></td>
-            <td><a  th:if="${dateJour.before(livre.dateFin) && livre.getProlongation()==false} "
-                    th:href="@{prolongation(id=${livre.id})}">Prolongation</a></td>
+        <tr th:each="livrelocation : ${livresLocation}" class="col-md-4 my-1">
+
+           <td th:text="${livrelocation.getLibrairie().titre}"></td>
+            <td th:text="${livrelocation.getDateCreatedString(livrelocation.dateDeb)}" ></td>
+            <td th:text="${livrelocation.getDateCreatedString(livrelocation.dateFin)}"></td>
+            <td><a  th:if="${dateJour.before(livrelocation.dateFin) && livrelocation.getProlongation()==false} "
+                    th:href="@{prolongation(id=${livrelocation.id})}">Prolongation</a></td>
         </tr>
 
           </tbody>

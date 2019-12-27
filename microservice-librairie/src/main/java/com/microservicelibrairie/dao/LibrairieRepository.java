@@ -1,10 +1,20 @@
 package com.microservicelibrairie.dao;
 
-import com.microservicelibrairie.entities.Librairie;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+        import com.microservicelibrairie.entities.Librairie;
+        import org.springframework.data.domain.Page;
+        import org.springframework.data.domain.Pageable;
+        import org.springframework.data.jpa.repository.JpaRepository;
 
-@Repository
-public interface LibrairieRepository extends JpaRepository<Librairie, Long> {
+
+        import java.util.List;
+
+public interface LibrairieRepository extends JpaRepository<Librairie,Long> {
+
+
+    List<Librairie> findByAuteurContainingIgnoreCaseAndTitreContainingIgnoreCase(String motClefAuteur, String motClefTitre,Pageable pageable);
+    List <Librairie>findByLocation(long num);
+
+
+
 
 }

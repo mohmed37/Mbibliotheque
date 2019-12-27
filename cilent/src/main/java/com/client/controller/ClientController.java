@@ -1,6 +1,7 @@
 package com.client.controller;
 
 import com.client.bean.LibrairieBean;
+import com.client.bean.LivreReserveBean;
 import com.client.bean.UserBean;
 import com.client.proxies.MbatchProxy;
 import com.client.proxies.MlibrairieProxy;
@@ -71,10 +72,10 @@ public class ClientController {
         UserBean userConnec=userService.getUserConnec();
         model.addAttribute("userConnect", userConnec);
 
-      List<LibrairieBean> livresLocation = mlibrairieProxy.findByLocation(userConnec.getNum());
-      model.addAttribute("Livres", livresLocation);
+      List<LivreReserveBean> livresLocation = mlibrairieProxy.findByLocation(userConnec.getNum());
+      model.addAttribute("livresLocation", livresLocation);
 
-   Date dateJour=new Date();
+       Date dateJour=new Date();
         model.addAttribute("dateJour",dateJour);
         return "user";
     }
@@ -124,12 +125,19 @@ public class ClientController {
         return "redirect:/userLocation";
     }
     @RequestMapping(value = "/mail")
-    @ResponseBody
+
     public void envoiMail(){
-        mbatchProxy.sendEmail();
+       /* List <LibrairieBean>listLivres=mlibrairieProxy.listDesLivresAll();
+        for (int i=0;i<listLivres.size();i++){
+           LibrairieBean librairieBean =listLivres.get(i);
+
+            if (librairieBean.getStatus()==true & ){
+
+            }
+
+        }*/
+
        }
-
-
 
 
 }

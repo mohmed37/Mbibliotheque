@@ -13,8 +13,6 @@ import lombok.experimental.FieldDefaults;
 
 public class BatchBean {
     Long id;
-
-    Long idUtilisateur;
-
-    Long idLivre;
+    String emailTo;
+    String content;
 }

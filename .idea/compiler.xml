@@ -7,11 +7,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="eureka-server" />
-        <module name="microservice-librairie" />
         <module name="config-server" />
         <module name="microservice-utilisateur" />
-        <module name="microervice-batch" />
         <module name="zuul-server" />
+        <module name="mlibrairie" />
+        <module name="microervice-batch" />
         <module name="client" />
       </profile>
     </annotationProcessing>
@@ -30,6 +30,9 @@
       <module name="microservice-librairy" target="1.8" />
       <module name="microservice-user" target="1.8" />
       <module name="microservice-utilisateur" target="1.8" />
+      <module name="mlibrairie" target="1.8" />
+      <module name="mlibrairie (1)" target="1.8" />
+      <module name="mlibrairie (2)" target="1.8" />
       <module name="Quartz2Example" target="1.6" />
       <module name="zuul-server" target="1.8" />
     </bytecodeTargetLevel>
@@ -50,6 +53,9 @@
       <module name="microservice-librairy" options="-parameters" />
       <module name="microservice-user" options="-parameters" />
       <module name="microservice-utilisateur" options="-parameters" />
+      <module name="mlibrairie" options="-parameters" />
+      <module name="mlibrairie (1)" options="-parameters" />
+      <module name="mlibrairie (2)" options="-parameters" />
       <module name="zuul-server" options="-parameters" />
     </option>
   </component>

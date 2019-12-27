@@ -4,6 +4,7 @@ import com.microserviceuser.dao.AppRoleRepository;
 import com.microserviceuser.dao.AppUserRepository;
 import com.microserviceuser.entities.AppUser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -28,6 +29,8 @@ public class UserController {
     public AppUser findUserByUsername(@RequestParam(name = "username", defaultValue = "") String username) {
         return appUserRepository.findByUsername(username);
     }
+
+
 }
 
 

@@ -16,8 +16,6 @@ public class Batch {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-
-    Long idUtilisateur;
-
-    Long idLivre;
+    String emailTo;
+    String content;
 }

@@ -13,5 +13,11 @@
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://localhost:5432/librairie</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="batch@localhost" uuid="2bee9e28-e15b-482d-90d2-3e03bfc6ebc6">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/batch</jdbc-url>
+    </data-source>
   </component>
 </project>

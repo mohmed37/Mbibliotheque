@@ -23,21 +23,7 @@ public class LibrairieBean {
     String auteur;
     String resume;
     Integer nExemplaire;
-    Boolean status;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    Date dateDeb;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    Date dateFin;
     String photo;
-    Long location;
-    Boolean prolongation;
-
-
-    public String getDateCreatedString(Date date) {
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        return df.format(date);
-    }
-
 
     @Override
     public String toString() {
@@ -48,11 +34,7 @@ public class LibrairieBean {
         sb.append(", auteur='").append(auteur).append('\'');
         sb.append(", resume='").append(resume).append('\'');
         sb.append(", nExemplaire=").append(nExemplaire);
-        sb.append(", status=").append(status);
-        sb.append(", dateDeb=").append(dateDeb);
-        sb.append(", dateFin=").append(dateFin);
         sb.append(", photo='").append(photo).append('\'');
-        sb.append(", idUserLocation=").append(location);
         sb.append('}');
         return sb.toString();
     }
