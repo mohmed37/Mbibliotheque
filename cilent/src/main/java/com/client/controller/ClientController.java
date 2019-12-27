@@ -1,5 +1,6 @@
 package com.client.controller;
 
+import com.client.bean.BatchBean;
 import com.client.bean.LibrairieBean;
 import com.client.bean.LivreReserveBean;
 import com.client.bean.UserBean;
@@ -23,13 +24,16 @@ import javax.validation.Valid;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class ClientController {
     @Autowired
     MlibrairieProxy mlibrairieProxy;
+
     @Autowired
     MuserProxy muserProxy;
     @Autowired
@@ -125,19 +129,83 @@ public class ClientController {
         return "redirect:/userLocation";
     }
     @RequestMapping(value = "/mail")
+       public String envoiMail(BatchBean batchBean){
+        SimpleDateFormat formater = null;
+        Date dateJour= new Date();
+        formater = new SimpleDateFormat("'le' dd/MM/yyyy");
+        List <LivreReserveBean>listLivresReserves=mlibrairieProxy.livreReservesAll();
+        for (int i=0;i<listLivresReserves.size();i++){
+           LivreReserveBean livreReserveBean =listLivresReserves.get(i);
+            if (livreReserveBean.getRendreLivre()==true ){
+                        Optional<UserBean> client = muserProxy.findById(livreReserveBean.getIdClient());
+                        if (livreReserveBean.getMailEnvoye()==false){
+                        batchBean.setContent("Bibliothèque Municipale de Tours\n" +
+                                "    2bis AV. ANDRE MALRAUX\n" +
+                                "    37042 TOURS CEDEX\n" +
+                                "    02 47 05 47 33\n" +
+                                "    secretariat@bm-tours.fr\n" +
+                                "\n" +
+                                "\n" +
+                                "                                                  M. "+" "+ client.get().getNom()+" "
+                                + client.get().getPrenom()+"\n" +
+                                "                                                  \n" +
+                                "                                                  10 RESIDENCE DU GRAND CEDRE\n" +
+                                "                                                  \n" +
+                                "                                                  37550 ST AVERTIN\n" +
+                                "\n" +
+                                "\n" +
+                                "\n" +
+                                "\n" +
+                                "                                                  Tours," +formater.format(dateJour)+"\n" +
+                                "\n" +
+                                "\n" +
+                                "\n" +
+                                "    Madame, Monsieur, \n" +
+                                "\n" +
+                                "    Malgré notre précedent rappel, vous n'avez toujours pas, à ce jour, restitué les\n" +
+                                "      documents ci-dessous.\n" +
+                                "    Merci de les rendre sans tarder, afin que d'autres lecteurs puissent en profiter.\n" +
+                                "    Tant que vous ne les aurez pas restitués, il ne vous sera pas possible d'emprunter\n" +
+                                "      d'autres documents, et ce dans n'importe quelle bibliothèque du réseau.\n" +
+                                "\n" +
+                                "    Si vous ne retrouvez plus les documents qui vous sont demandés, vous avez la\n" +
+                                "      possibilité de les remplacer par un exemplaire identique.\n" +
+                                "\n" +
+                                "    Si ce courrier vous parvient après le retour des documents réclamés, merci de ne\n" +
+                                "      pas en tenir compte. Pensez, pour vos prochains emprunts, à ne pas dépasser les\n" +
+                                "      durées de prêt.\n" +
+                                "    Sinon, conformément à l'article 2 de l'arrêté 462/04 portant règlement intérieur\n" +
+                                "      de la Bibliothèque, passés les 2 mois de retard, vous recevrez une facture\n" +
+                                "      correspondant à la valeur des documents non rendus.\n" +
+                                "    Le règlement devra s'effectuer directement auprès de la Bibliothèque (paiement par\n" +
+                                "      chèque à l'ordre de M. le Trésorier Principal de Tours Municipale).\n" +
+                                "\n" +
+                                "    Comptant sur une régularisation rapide de votre situation et restant à votre\n" +
+                                "      disposition pour tout renseignement relatif aux prêts, je vous prie d'agréer mes\n" +
+                                "      sincères salutations.\n" +
+                                "\n" +
+                                "                                        La Directrice de la Bibliothèque.\n" +
+                                "\n" +
+                                "\n" +
+                                "\n" +
+                                "    ------------------------------------------\n" +
+                                "\n" +
+                                "    Titre: " + livreReserveBean.getLibrairie().getTitre() + "\n" +
+                                "    Auteur: " + livreReserveBean.getLibrairie().getAuteur() + " \n" +
+                                "    A rendre avant " + formater.format(livreReserveBean.getDateFin()) + "\n" +
+                                "    ------------------------------------------\n" +
+                                "\n" +
+                                "\n");
+                        batchBean.setEmailTo(client.get().getEmail());
+                        batchBean.setIdLocation(livreReserveBean.getId());
+                        livreReserveBean.setMailEnvoye(true);
+                        mlibrairieProxy.modifListeReserve(livreReserveBean);
+                        mbatchProxy.saveListBatch(batchBean);
+                        }
 
-    public void envoiMail(){
-       /* List <LibrairieBean>listLivres=mlibrairieProxy.listDesLivresAll();
-        for (int i=0;i<listLivres.size();i++){
-           LibrairieBean librairieBean =listLivres.get(i);
-
-            if (librairieBean.getStatus()==true & ){
 
             }
-
-        }*/
-
+        }
+        return "redirect:/";
        }
-
-
 }

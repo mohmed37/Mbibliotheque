@@ -18,8 +18,8 @@ public class UserController {
 
 
 
-    @PostMapping(value = "/users")
-    public Optional<AppUser> findById(long id) {
+    @GetMapping(value = "/users")
+    public Optional<AppUser> findById(@RequestParam(name = "id") long id) {
         Optional<AppUser> appUsers = appUserRepository.findById(id);
         return appUsers;
     }

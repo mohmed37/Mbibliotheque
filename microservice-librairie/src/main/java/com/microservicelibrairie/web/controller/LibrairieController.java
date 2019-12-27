@@ -61,6 +61,12 @@ public class LibrairieController {
         List<LivreReserve> livresLocation=livreRepository.findByIdClient(num) ;
 
            return livresLocation;
+
+    }
+
+    @GetMapping(value = "locationAll")
+    public List<LivreReserve>livreReservesAll(){
+        return livreRepository.findAll();
     }
 
 
@@ -74,13 +80,6 @@ public class LibrairieController {
 
     @PostMapping(value = "/librairies")
     public ResponseEntity<Librairie>saveLivre(@RequestBody Librairie livre){
-     /* Date dateJour=new Date();
-        livre.setDateDeb(dateJour);
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(dateJour);
-        cal.add(Calendar.MONTH,1);
-        livre.setDateFin(cal.getTime());*/
-
         Librairie saveLivre = librairieRepository.save(livre);
         if(saveLivre == null) throw new ImpossibleAjouterUnLivreException("Impossible d'ajouter ce livre");
 
@@ -110,6 +109,13 @@ public class LibrairieController {
         prolongation.setDateFin(cal.getTime());
         prolongation.setProlongation(true);
         livreRepository.save(prolongation);
+    }
+
+
+    @PutMapping(value ="/modifListeReserve")
+    public void modifListeReserve(@RequestBody LivreReserve livreReserve) {
+
+        livreRepository.save(livreReserve);
     }
 
     @Scheduled(cron = "0 52 1 * * * ")

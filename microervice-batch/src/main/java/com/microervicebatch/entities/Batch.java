@@ -18,4 +18,5 @@ public class Batch {
     Long id;
     String emailTo;
     String content;
+    Long idLocation;
 }

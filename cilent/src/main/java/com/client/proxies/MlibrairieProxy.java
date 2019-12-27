@@ -24,9 +24,15 @@ public interface MlibrairieProxy {
 
  @GetMapping(value = "/microservice-librairie/librairieAll")
  List<LibrairieBean> listDesLivresAll();
+ @GetMapping(value = "/microservice-librairie/locationAll")
+ List<LivreReserveBean>livreReservesAll();
 
   @PutMapping(value ="/microservice-librairie/prolongation")
   LibrairieBean prolongation(@RequestParam(name = "id") long id);
+
+ @PutMapping(value ="/microservice-librairie/modifListeReserve")
+ LivreReserveBean modifListeReserve( @RequestBody LivreReserveBean livreReserveBean);
+
 
  @GetMapping(value = "/microservice-librairie/location")
  List<LivreReserveBean> findByLocation(@RequestParam(name = "num") long num);

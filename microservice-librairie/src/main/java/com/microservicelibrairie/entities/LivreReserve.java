@@ -23,10 +23,12 @@ public class LivreReserve implements Serializable {
     Long idClient;
     Boolean rendreLivre=false;
     Boolean prolongation=false;
+    Boolean mailEnvoye=false;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     Date dateDeb;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     Date dateFin;
+
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "livre_id")

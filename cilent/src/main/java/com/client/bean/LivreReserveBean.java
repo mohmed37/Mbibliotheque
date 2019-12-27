@@ -24,6 +24,7 @@ public class LivreReserveBean {
     Long idClient;
     Boolean rendreLivre=false;
     Boolean prolongation=false;
+    Boolean mailEnvoye=false;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     Date dateDeb;
     @DateTimeFormat(pattern = "yyyy-MM-dd")

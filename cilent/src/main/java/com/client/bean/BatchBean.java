@@ -15,4 +15,5 @@ public class BatchBean {
     Long id;
     String emailTo;
     String content;
+    Long idLocation;
 }

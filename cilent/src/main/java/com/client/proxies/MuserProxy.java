@@ -12,8 +12,8 @@ import java.util.Optional;
 @RibbonClient(name = "microservice-utilisateur")
 public interface MuserProxy {
 
- /*   @PostMapping(value = "/microservice-utilisateur/users")
-    Optional<UserBean> findById(Long num);*/
+    @GetMapping(value = "/microservice-utilisateur/users")
+    Optional<UserBean> findById(@RequestParam(name = "id") long id);
 
     @PostMapping(value ="/microservice-utilisateur/username")
     UserBean findUserByUsername( @RequestParam(name = "username",defaultValue ="")String username);
