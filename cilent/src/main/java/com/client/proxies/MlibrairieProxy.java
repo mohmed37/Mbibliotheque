@@ -33,10 +33,8 @@ public interface MlibrairieProxy {
  @PutMapping(value ="/microservice-librairie/modifListeReserve")
  LivreReserveBean modifListeReserve( @RequestBody LivreReserveBean livreReserveBean);
 
-
  @GetMapping(value = "/microservice-librairie/location")
  List<LivreReserveBean> findByLocation(@RequestParam(name = "num") long num);
-
 
  @GetMapping(value = "/microservice-librairie/librairies/{id}")
  LibrairieBean recupererUnLivre(@PathVariable("id") long id);

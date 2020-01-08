@@ -18,6 +18,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableFeignClients("com.client")
 @EnableDiscoveryClient
 public class CilentApplication {
+
 	@Autowired
 	ClientController clientController;
 

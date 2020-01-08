@@ -21,9 +21,7 @@ public class LivreReserve implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     Long idClient;
-    Boolean rendreLivre=false;
     Boolean prolongation=false;
-    Boolean mailEnvoye=false;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     Date dateDeb;
     @DateTimeFormat(pattern = "yyyy-MM-dd")

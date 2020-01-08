@@ -3,8 +3,10 @@ package com.microservicelibrairie.web.controller;
 import com.microservicelibrairie.config.ApplicationLibrairieConfig;
 import com.microservicelibrairie.dao.LibrairieRepository;
 import com.microservicelibrairie.dao.LivreRepository;
+import com.microservicelibrairie.dao.UserReservationDao;
 import com.microservicelibrairie.entities.Librairie;
 import com.microservicelibrairie.entities.LivreReserve;
+import com.microservicelibrairie.entities.UserReservation;
 import com.microservicelibrairie.web.exceptions.ImpossibleAjouterUnLivreException;
 import com.microservicelibrairie.web.exceptions.LivreNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +33,8 @@ public class LibrairieController {
     LibrairieRepository librairieRepository;
     @Autowired
     LivreRepository livreRepository;
+    @Autowired
+    UserReservationDao userReservationDao;
 
     @Value("${dir.images}")
     private String imageDir;
@@ -40,6 +44,11 @@ public class LibrairieController {
     @GetMapping(value = "/librairieAll")
     public List<Librairie>listeDesLivresAll(){
         return librairieRepository.findAll();
+    }
+
+    @GetMapping(value = "/userReservation")
+    public  List<UserReservation>userReservations(){
+        return userReservationDao.findAll();
     }
 
 
@@ -118,7 +127,7 @@ public class LibrairieController {
         livreRepository.save(livreReserve);
     }
 
-    @Scheduled(cron = "0 52 1 * * * ")
+   /* @Scheduled(cron = "0 52 1 * * * ")
     public void miseJourStatus(){
         List<LivreReserve> listLivre = livreRepository.findAll();
         Date dateDuJour=new Date();
@@ -138,7 +147,7 @@ public class LibrairieController {
 
 
 
-    }
+    }*/
 
 
 

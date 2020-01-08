@@ -1,4 +1,4 @@
-package com.client.bean;
+package com.microervicebatch.bean;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -29,14 +29,24 @@ public class LivreReserveBean {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     Date dateFin;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "livre_id")
+    LibrairieBean librairie;
+
     public String getDateCreatedString(Date date) {
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         return df.format(date);
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "livre_id")
-    LibrairieBean librairie;
 
+    public String afficher() {
+        final StringBuffer sb = new StringBuffer("");
+        sb.append("Titre: ").append(librairie.getTitre());
+        sb.append(", Auteur: ").append(librairie.getAuteur());
+        sb.append(", A rendre avant le: ").append(getDateCreatedString(dateFin));
+        sb.append('\n');
+        sb.append("=====================================================\n");
+        return sb.toString();
+    }
 
 }

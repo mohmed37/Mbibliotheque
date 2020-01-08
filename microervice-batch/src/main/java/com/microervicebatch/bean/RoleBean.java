@@ -1,4 +1,4 @@
-package com.client.bean;
+package com.microervicebatch.bean;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -10,10 +10,8 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
+public class RoleBean {
+     Long id;
 
-public class BatchBean {
-    Long id;
-    String emailTo;
-    String content;
-    Long idLocation;
+    String role;
 }
