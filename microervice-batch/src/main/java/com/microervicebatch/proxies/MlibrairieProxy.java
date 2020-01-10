@@ -1,5 +1,6 @@
 package com.microervicebatch.proxies;
 
+import com.microervicebatch.bean.LivreReserveBean;
 import com.microervicebatch.bean.UserReservationBean;
 import org.springframework.cloud.netflix.ribbon.RibbonClient;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -13,6 +14,10 @@ public interface MlibrairieProxy {
 
  @GetMapping(value = "/microservice-librairie/userReservation")
   List<UserReservationBean>userReservations();
+
+ @GetMapping(value = "/microservice-librairie/location")
+ List<LivreReserveBean> findByLocation(@RequestParam(name = "num") long num);
+
 }
 
 

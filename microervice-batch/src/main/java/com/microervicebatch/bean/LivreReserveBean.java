@@ -33,6 +33,9 @@ public class LivreReserveBean {
     @JoinColumn(name = "livre_id")
     LibrairieBean librairie;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    UserReservationBean userReservation;
+
     public String getDateCreatedString(Date date) {
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         return df.format(date);

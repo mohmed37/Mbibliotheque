@@ -28,6 +28,6 @@ public class Librairie implements Serializable {
     String resume;
     Integer nExemplaire;
     String photo;
-    Long location;
+
 
 }

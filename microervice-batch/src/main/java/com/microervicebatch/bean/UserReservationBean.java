@@ -18,16 +18,15 @@ import java.util.List;
 public class UserReservationBean {
     Long id;
     Long idClient;
+    int nbLivre=0;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    Collection<LivreReserveBean> livreReservations ;
+
 
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("UserReservationBean{");
         sb.append("id=").append(id);
         sb.append(", idClient=").append(idClient);
-        sb.append(", livreReservationBeans=").append(livreReservations);
         sb.append('}');
         return sb.toString();
     }

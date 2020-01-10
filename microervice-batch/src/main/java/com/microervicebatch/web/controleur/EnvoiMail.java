@@ -36,7 +36,7 @@ public class EnvoiMail {
 
 
 
-    @Scheduled(cron = "0  21 13 * * * ")
+    @Scheduled(cron = "0  16 14 * * * ")
     public void sendEmail() {
 
         SimpleDateFormat formater = null;
@@ -48,8 +48,9 @@ public class EnvoiMail {
         for (int i =0; i < list.size(); i++){
             UserReservationBean userReservation=list.get(i);
             UserBean userBean=muserProxy.findById(userReservation.getIdClient()).get();
+            List<LivreReserveBean>listVivreUser=mlibrairieProxy.findByLocation(userReservation.getIdClient());
 
-           List<LivreReserveBean> listeLivreDateExpiree=userReservation.getLivreReservations().stream()
+           List<LivreReserveBean> listeLivreDateExpiree=listVivreUser.stream()
                     .filter((LivreReserveBean livreReservation) -> dateJour.after(livreReservation.getDateFin()))
                     .collect(Collectors.toList());
 

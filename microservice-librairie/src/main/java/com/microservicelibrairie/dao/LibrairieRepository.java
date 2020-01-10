@@ -12,7 +12,7 @@ public interface LibrairieRepository extends JpaRepository<Librairie,Long> {
 
 
     List<Librairie> findByAuteurContainingIgnoreCaseAndTitreContainingIgnoreCase(String motClefAuteur, String motClefTitre,Pageable pageable);
-    List <Librairie>findByLocation(long num);
+
 
 
 

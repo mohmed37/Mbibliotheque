@@ -27,6 +27,9 @@ public class LivreReserve implements Serializable {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     Date dateFin;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    UserReservation userReservation;
+
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "livre_id")

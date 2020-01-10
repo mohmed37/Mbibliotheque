@@ -8,6 +8,7 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 
 
 @Entity
@@ -22,18 +23,17 @@ public class UserReservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     Long idClient;
+    Integer nbLivre=0;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    Collection<LivreReserve>livreReservations ;
 
     @Override
-
     public String toString() {
         final StringBuffer sb = new StringBuffer("UserReservation{");
         sb.append("id=").append(id);
         sb.append(", idClient=").append(idClient);
-        sb.append(", livreReservations=").append(livreReservations);
         sb.append('}');
         return sb.toString();
     }
+
+
 }

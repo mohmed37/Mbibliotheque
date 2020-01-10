@@ -8,21 +8,17 @@ import com.microservicelibrairie.entities.Librairie;
 import com.microservicelibrairie.entities.LivreReserve;
 import com.microservicelibrairie.entities.UserReservation;
 import com.microservicelibrairie.web.exceptions.ImpossibleAjouterUnLivreException;
+import com.microservicelibrairie.web.exceptions.ImpossibleAjouterUneReservationException;
 import com.microservicelibrairie.web.exceptions.LivreNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 
 @RestController
@@ -40,6 +36,7 @@ public class LibrairieController {
     private String imageDir;
     @Autowired
     ApplicationLibrairieConfig appConfigs;
+    private Librairie livre;
 
     @GetMapping(value = "/librairieAll")
     public List<Librairie>listeDesLivresAll(){
@@ -127,27 +124,67 @@ public class LibrairieController {
         livreRepository.save(livreReserve);
     }
 
-   /* @Scheduled(cron = "0 52 1 * * * ")
-    public void miseJourStatus(){
-        List<LivreReserve> listLivre = livreRepository.findAll();
-        Date dateDuJour=new Date();
 
-        for (int i = 0; i < listLivre.size(); i++) {
-            long id = listLivre.get(i).getId();
-            LivreReserve livre = livreRepository.findById(id).get();
+    @PostMapping(value ="saveReservation/{idLivre}/{idUser}" )
+    public LivreReserve saveReservation(@RequestBody LivreReserve livreReserve, @PathVariable("idLivre") Long idLivre,
+                                        @PathVariable("idUser") Long idUser)
+           {
+        Librairie livre= recupererUnLivre(idLivre).get();
+        if (livre.getNExemplaire()<=0)throw new ImpossibleAjouterUneReservationException("Ce livre n'est plus" +
+                " disponible");
 
-            if(dateDuJour.after(livre.getDateFin())){
-                livre.setRendreLivre(true);
-            }else {
-                livre.setRendreLivre(false);
-            }
-            livreRepository.save(livre);
+        Date dateJour= new Date();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(dateJour);
+        cal.add(Calendar.MONTH,1);
 
+        List<UserReservation> list=userReservationDao.findAll();
+        boolean userinscrit = false;
+
+        for (int i =0; i < list.size(); i++){
+            UserReservation userlist=list.get(i);
+
+           if (userlist.getIdClient().compareTo(idUser)==0){
+               userinscrit=true;
+              }
+           }
+        if (userinscrit==false){
+            UserReservation userReservation=new UserReservation();
+            userReservation.setIdClient(idUser);
+            userReservationDao.save(userReservation);
         }
 
+               UserReservation userReservation= userReservationDao.findByIdClient(idUser);
+               livreReserve.setDateDeb(dateJour);
+               livreReserve.setDateFin(cal.getTime());
+               livreReserve.setIdClient(idUser);
+               livreReserve.setLibrairie(livre);
+               livreReserve.setProlongation(false);
+               livreReserve.setUserReservation(userReservation);
+               livre.setNExemplaire(livre.getNExemplaire()-1);
+
+               userReservation.setNbLivre(userReservation.getNbLivre()+1);
+
+               return livreRepository.save(livreReserve);
+
+    }
+    @DeleteMapping (value ="deleteReservation/{id}" )
+    public void deleteReservation(@PathVariable("id") Long id) {
+
+        LivreReserve livreReserves=livreRepository.findById(id).get();
+        Librairie livre= recupererUnLivre(livreReserves.getLibrairie().getId()).get();
+        livre.setNExemplaire(livre.getNExemplaire()+1);
+        livreReserves.getUserReservation().setNbLivre(livreReserves.getUserReservation().getNbLivre()-1);
+        livreRepository.deleteById(id);
+
+        if (livreReserves.getUserReservation().getNbLivre()==0){
+            userReservationDao.delete(livreReserves.getUserReservation());
+        }
+    }
 
 
-    }*/
+
+
 
 
 
