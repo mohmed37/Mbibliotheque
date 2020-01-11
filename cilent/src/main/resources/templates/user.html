@@ -4,16 +4,16 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="../static/css/css/myStyle.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/css/photo/myStyle.css"/>
     <title>Title</title>
 
 </head>
 <body>
-
+<div th:insert="header.html :: header"></div></br>
 <div class="container">
     <div class="row">
 
-        <h2>Liste des utilisateurs</h2>
+        <h2>Mes informations</h2></br>
         <table class="table table-striped">
             <thead class="thead-light">
             <tr>
@@ -22,7 +22,7 @@
                 <th>Identifianr</th>
                 <th>Mot de passe</th>
                 <th>Téléphone</th>
-                <th>Date</th>
+                <th>Date d'inscription</th>
                 <th>E-Mail</th>
             </tr>
             </thead>
@@ -32,14 +32,15 @@
                     <td th:text="${userConnect.username}"></td>
                     <td th:text="${userConnect.password}" ></td>
                     <td th:text="${userConnect.phone}"></td>
-                    <td th:text="${userConnect.date}"></td>
+                    <td th:text="${userConnect.getDateCreatedString(userConnect.date)}"></td>
                     <td th:text="${userConnect.email}"></td>
 
         </table>
     </div>
-</div>
+</div></br>
 <div class="container">
     <div class="row">
+        <h2>Liste des livres</h2></br>
         <table class="table table-striped">
             <thead class="thead-light">
             <tr>
@@ -64,7 +65,7 @@
 
         </table>
     </div>
-</div>
-
+</div></br>
+<div th:insert="footer.html :: footer"></div>
 </body>
 </html>

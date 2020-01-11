@@ -52,7 +52,7 @@ public interface MlibrairieProxy {
  List<LibrairieBean> listDesLivres(@RequestParam(name = "motClefAuteur",defaultValue ="") String motClefAuteur,
                                    @RequestParam(name = "motClefTitre",defaultValue ="") String motClefTitre
                                    ,@RequestParam(name="page",defaultValue = "0")int page,
-                                   @RequestParam(name="size",defaultValue = "2")int size);
+                                   @RequestParam(name="size",defaultValue = "5")int size);
 
 
 

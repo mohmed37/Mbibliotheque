@@ -51,7 +51,7 @@ public class LibrairieController {
 
     @GetMapping(value = "/librairies")
     public List<Librairie> listDesLivres(@RequestParam(name="page",defaultValue = "0")Integer page,
-                                         @RequestParam(name="size",defaultValue = "2")Integer size,
+                                         @RequestParam(name="size",defaultValue = "5")Integer size,
                                          @RequestParam(name = "motClefAuteur",defaultValue ="") String motClefAuteur,
                                          @RequestParam(name = "motClefTitre",defaultValue ="") String motClefTitre
                                         ) {

@@ -1,160 +1,108 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:background="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="../static/css/css/myStyle.css" >
+    <link rel="stylesheet" type="text/css" href="../static/css/css/photo/myStyle.css" >
     <title>Mlibrairie</title>
     <style>
-
-        .header-font {
-            font-family: "Josefin Slab","Helvetica Neue",Helvetica,Arial,sans-serif;
-            color: #fd1506;
-        }
-        .fa-facebook{
-            color:#3b5998;
-        }
-        .fa-linkedin{
-            color:#0077B5;
-        }
-        .fa-twitter{
-            color:#4099FF;
-        }
-        .fa-google{
-            color:#d34836;
-        }
-        .bg-primary {
-            background-color: #000 !important;
-        }
-
-        .bg-circle
+        body
         {
-            display: inline-block;
-            width: 60px;
-            height: 60px;
-            padding: 14px 4px;
-            color: #ececec;
-            text-align: center;
-            border-radius: 50%;
+            background:white;
         }
 
-        .bg-circle-outline
+        .content-header{
+            font-family: 'Oleo Script', cursive;
+            color:#F8080C;
+            font-size: 45px;
+        }
+        .our-team-main
         {
-            width: 50px;
-            height: 50px;
-
-            padding: 8px 2px;
-            border: 2px solid;
-
-            border-radius: 50%;
+            width:100%;
+            height:auto;
+            border-bottom:5px #323233 solid;
+            background:#fff;
+            text-align:center;
+            border-radius:10px;
+            overflow:hidden;
+            position:relative;
+            transition:0.5s;
+            margin-bottom:28px;
         }
 
 
-        .bg-circle a, a:hover, .media a:focus
+        .our-team-main img
         {
-            text-decoration: none !important;
-            outline: none;
-            color: #ececec;
+            border-radius:50%;
+            margin-bottom:20px;
+            width: 150px;
         }
-        .bg-circle-outline a, a:hover, .media a:focus
+
+        .our-team-main h3
         {
-            text-decoration: none !important;
-            outline: none;
-            color: #ececec;
-        }
-        .footer {
-            background: #EDEFF1;
-            height: auto;
-            padding-bottom: 30px;
-            position: relative;
-            width: 100%;
-            border-bottom: 1px solid #CCCCCC;
-            border-top: 1px solid #DDDDDD;
-        }
-        .footer p {
-            margin: 0;
-        }
-        .footer img {
-            max-width: 100%;
-        }
-        .footer h3 {
-            border-bottom: 1px solid #BAC1C8;
-            color: #54697E;
-            font-size: 18px;
-            font-weight: 600;
-            line-height: 27px;
-            padding: 40px 0 10px;
-            text-transform: uppercase;
-        }
-        .footer ul {
-            font-size: 13px;
-            list-style-type: none;
-            margin-left: 0;
-            padding-left: 0;
-            margin-top: 15px;
-            color: #7F8C8D;
-        }
-        .footer ul li a {
-            padding: 0 0 5px 0;
-            display: block;
-        }
-        .footer a {
-            color: #78828D
+            font-size:20px;
+            font-weight:700;
         }
 
+        .our-team-main p
+        {
+            margin-bottom:0;
+        }
 
+        .team-back
+        {
+            width:100%;
+            height:auto;
+            position:absolute;
+            top:0;
+            left:0;
+            padding:5px 15px 0 15px;
+            text-align:left;
+            background:#fff;
 
+        }
+
+        .team-front
+        {
+            width:100%;
+            height:auto;
+            position:relative;
+            z-index:10;
+            background:#fff;
+            padding:15px;
+            bottom:0px;
+            transition: all 0.5s ease;
+            background:#F8080C;
+        }
+
+        .our-team-main:hover .team-front
+        {
+            bottom:-200px;
+            transition: all 0.5s ease;
+        }
+
+        .our-team-main:hover
+        {
+            border-color:#777;
+            transition:0.5s;
+        }
+        .red{
+           color:#F8080C;
+        }
 
     </style>
 
 </head>
 <body>
-<div class="container">
-    <div class="jumbotron text-center" style="background-color:#ffffff" >
-        <!--<div><img class="fakeimg" src="${pageContext.request.contextPath}/resources/images/logo.JPG" class="rounded-circle"
-                  alt="Cinque Terre" width="304" height="236" ></div>-->
-        <h1>Ma biliothéque</h1>
-
-    </div>
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <a class="navbar-brand" href="/">Accueil</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="collapsibleNavbar">
-
-            <ul class="navbar-nav">
-
-                <li class="nav-item">
-                    <a class="nav-link" onclick="window.location.href='userLocation'; return false;">Mon Compte</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" onclick="window.location.href='form'; return false;">Nouveau livre</a>
-                </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link"onclick="window.location.href='mail'; return false;">Mail</a>
-                    </li>
-                <li class="nav-item">
-                    <a class="nav-link"onclick="window.location.href='login'; return false;">Me connecter</a>
-                </li>
-            </ul>
-
-            </ul>
-        </div>
-    </nav>
-
-</div>
-
+<div th:insert="header.html :: header"></div></br>
 
 <div class="container spacer">
     <form th:action="@{/}" method="get">
         <div class="form-group">
-            <label>Rechercher avec le titre:</label>
+            <label class="red"> Rechercher avec le titre:</label>
             <input type="text" name="motClefTitre"/>
-            <label>Rechercher avec l'auteur</label>
+            <label class="red">Rechercher avec l'auteur:</label>
             <input type="text" name="motClefAuteur"/>
             <button type="submit">Chercher</button>
         </div>
@@ -162,99 +110,33 @@
     </form>
 
 </div>
+<h1  class="text-center">Livres disponibles à la bibliothéque de <span class="content-header wow fadeIn " data-wow-delay="0.2s" data-wow-duration="2s">Tours.</span></h1></br>
+
+
 
 <div class="container">
-
-    <h1>Application librairie</h1>
     <div class="row">
+        <!--team-5-->
+        <div th:each="livre : ${pageLivres}" class="col-lg-4">
+            <div class="our-team-main">
 
-        <div th:each="livre : ${pageLivres}" class="col-md-4 my-1">
-
-                <p th:text="${livre.titre}"></p>
-                <p th:text="${livre.genre}"></p>
-                <p th:text="${livre.auteur}"></p>
-                <p th:text="${livre.NExemplaire}"></p>
-                <p th:text="${livre.resume}"></p>
-                <img th:src="@{getPhoto(id=${livre.id})}"/>
-
-
-        </div>
-    </div>
-
-</div>
-
-   <!-- <div class="row">
-        <table class="table table-striped">
-            <thead class="thead-light">
-            <tr>
-                <th>Titre</th>
-                <th>Date d'emprunt </th>
-                <th>Date de restitution</th>
-
-            </tr>
-            </thead><div class="container">
-            <tbody>
-            <tr th:each="livre : ${pageLivres}" class="col-md-4 my-1">
-                <td th:text="${livre.titre}"></td>
-                <td th:text="${livre.dateDeb}"></td>
-                <td th:text="${livre.dateFin}"></td>
-            </tr>
-
-            </tbody>
-
-        </table>
-    </div>
-</div>
-
-<div class="container">
-    <ul>
-        <li th:each="p:${pages}" th:text="${p}"></li>
-    </ul>
-</div>
--->
-<footer>
-    <div class="container bg-primary py-3">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-7">
-                    <div class="row py-0">
-                        <div class="col-sm-1 hidden-md-down">
-                            <a class="bg-circle bg-info" href="#">
-                                <i class="fa fa-2x fa-fw fa-address-card" aria-hidden="true "></i>
-                            </a>
-                        </div>
-                        <div class="col-sm-11 text-white">
-                            <!--<div><h4>Contact</h4>
-                                <p><span class="header-font">L</span>es<span class="header-font">A</span>mis<span
-                                        class="header-font">D</span>e<span class="header-font">L</span>escalade.com</p>
-                            </div>-->
-                        </div>
-                    </div>
+                <div class="team-front"  >
+                    <img  th:src="@{getPhoto(id=${livre.id})}" class="img-fluid" />
+                    <h3> <p th:text="${livre.titre}"></p></h3>
+                    <p th:text="${livre.genre}"></p>
+                    <p th:text="${livre.auteur}"></p>
                 </div>
-                <div class="col-md-5">
-                    <div class="d-inline-block">
-                        <div class="bg-circle-outline d-inline-block" style="background-color:#3b5998">
-                            <a href="https://www.facebook.com/"><i class="fa fa-2x fa-fw fa-facebook text-white"></i>
-                            </a>
-                        </div>
-                        <div class="bg-circle-outline d-inline-block" style="background-color:#4099FF">
-                            <a href="https://twitter.com/">
-                                <i class="fa fa-2x fa-fw fa-twitter text-white"></i></a>
-                        </div>
 
-                        <div class="bg-circle-outline d-inline-block" style="background-color:#0077B5">
-                            <a href="https://www.linkedin.com/company/">
-                                <i class="fa fa-2x fa-fw fa-linkedin text-white"></i></a>
-                        </div>
-                        <div class="bg-circle-outline d-inline-block" style="background-color:#d34836">
-                            <a href="https://www.google.com/">
-                                <i class="fa fa-2x fa-fw fa-google text-white"></i></a>
-                        </div>
-                    </div>
+                <div class="team-back">
+	<span>
+	 <p th:text="${livre.resume}"></p>
+	</span>
                 </div>
+
             </div>
         </div>
     </div>
-</footer>
+</div>
+<div th:insert="footer.html :: footer"></div>
 </body>
 </html>

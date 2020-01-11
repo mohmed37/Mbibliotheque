@@ -49,7 +49,7 @@ public class ClientController {
     public String accueil(Model model,@RequestParam(name = "motClefAuteur",defaultValue ="") String motClefAuteur,
                           @RequestParam(name = "motClefTitre",defaultValue ="") String motClefTitre
                           ,@RequestParam(name="page",defaultValue = "0")int page,
-                          @RequestParam(name="size",defaultValue = "3")int size) {
+                          @RequestParam(name="size",defaultValue = "6")int size) {
         log.info("Envoi requête vers microservice-produits");
         List<LibrairieBean> pageLivres = mlibrairieProxy.listDesLivres( motClefAuteur,motClefTitre,page,size);
       /*  int pagesCount=pageLivres.getTotalPages();

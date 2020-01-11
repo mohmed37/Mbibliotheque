@@ -8,6 +8,8 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -36,6 +38,10 @@ public class UserBean {
         this.username = username;
         this.password = password;
         this.roles = roles;
+    }
+    public String getDateCreatedString(Date date) {
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        return df.format(date);
     }
 
     @Override
