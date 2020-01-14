@@ -7,42 +7,101 @@
     <link rel="stylesheet" type="text/css" href="../static/css/css/photo/myStyle.css" >
     <title>Mlibrairie</title>
     <style>
-        body
-        {
-            background:white;
+        .header-font {
+            font-family: "Josefin Slab","Helvetica Neue",Helvetica,Arial,sans-serif;
+            color: #fd1506;
+        }
+        .fa-facebook{
+            color:#3b5998;
+        }
+        .fa-linkedin{
+            color:#0077B5;
+        }
+        .fa-twitter{
+            color:#4099FF;
+        }
+        .fa-google{
+            color:#d34836;
+        }
+        .bg-primary {
+            background-color: #000 !important;
         }
 
-        h1
+        .bg-circle
         {
-            color:#F8080C;
-            margin:40px 0 60px 0;
-            font-weight:300;
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            padding: 14px 4px;
+            color: #ececec;
+            text-align: center;
+            border-radius: 50%;
+        }
+
+        .bg-circle-outline
+        {
+            width: 50px;
+            height: 50px;
+            color:smoke;
+            padding: 8px 2px;
+            border: 2px solid;
+            border-color: smoke;
+            border-radius: 50%;
         }
 
 
-        .our-team-main img
+        .bg-circle a, a:hover, .media a:focus
         {
-            border-radius:50%;
-            margin-bottom:20px;
-            width: 150px;
+            text-decoration: none !important;
+            outline: none;
+            color: #ececec;
+        }
+        .bg-circle-outline a, a:hover, .media a:focus
+        {
+            text-decoration: none !important;
+            outline: none;
+            color: #ececec;
+        }
+        .footer {
+            background: #EDEFF1;
+            height: auto;
+            padding-bottom: 30px;
+            position: relative;
+            width: 100%;
+            border-bottom: 1px solid #CCCCCC;
+            border-top: 1px solid #DDDDDD;
+        }
+        .footer p {
+            margin: 0;
+        }
+        .footer img {
+            max-width: 100%;
+        }
+        .footer h3 {
+            border-bottom: 1px solid #BAC1C8;
+            color: #54697E;
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 27px;
+            padding: 40px 0 10px;
+            text-transform: uppercase;
+        }
+        .footer ul {
+            font-size: 13px;
+            list-style-type: none;
+            margin-left: 0;
+            padding-left: 0;
+            margin-top: 15px;
+            color: #7F8C8D;
+        }
+        .footer ul li a {
+            padding: 0 0 5px 0;
+            display: block;
+        }
+        .footer a {
+            color: #78828D
         }
 
-        .our-team-main h3
-        {
-            font-size:20px;
-            font-weight:700;
-        }
-
-        .our-team-main p
-        {
-            margin-bottom:0;
-        }
-
-        .our-team-main:hover .team-front
-        {
-            bottom:-200px;
-            transition: all 0.5s ease;
-        }
 
 
 
@@ -51,7 +110,7 @@
 </head>
 <body>
 <footer th:fragment="footer">
-    <div class="container " style="background-color:black">
+    <div class="container" style="background-color:black">
         <div class="container">
             <div class="row">
                 <div class="col-md-7">
@@ -62,10 +121,9 @@
                             </a>
                         </div>
                         <div class="col-sm-11 text-white">
-                            <!--<div><h4>Contact</h4>
-                                <p><span class="header-font">L</span>es<span class="header-font">A</span>mis<span
-                                        class="header-font">D</span>e<span class="header-font">L</span>escalade.com</p>
-                            </div>-->
+                            <div><h4>Contact</h4>
+                                <p><span class="header-font">LaBibliothéquedeTours@gmail.com </span></p>
+                            </div>
                         </div>
                     </div>
                 </div>

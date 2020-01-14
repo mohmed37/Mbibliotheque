@@ -2,6 +2,7 @@ package com.client.proxies;
 
 
 
+import com.client.bean.GenreBean;
 import com.client.bean.LibrairieBean;
 import com.client.bean.LivreReserveBean;
 import org.springframework.cloud.netflix.ribbon.RibbonClient;
@@ -11,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @FeignClient(name="zuul-server")
 @RibbonClient("microservice-librairie")
@@ -19,20 +21,21 @@ public interface MlibrairieProxy {
 
  @GetMapping(value = "/microservice-librairie/librairieAll")
  List<LibrairieBean> listDesLivresAll();
+
  @GetMapping(value = "/microservice-librairie/locationAll")
- List<LivreReserveBean>livreReservesAll();
+ List<LivreReserveBean> livreReservesAll();
 
-  @PutMapping(value ="/microservice-librairie/prolongation")
-  LibrairieBean prolongation(@RequestParam(name = "id") long id);
+ @PutMapping(value = "/microservice-librairie/prolongation")
+ LibrairieBean prolongation(@RequestParam(name = "id") long id);
 
- @PutMapping(value ="/microservice-librairie/modifListeReserve")
- LivreReserveBean modifListeReserve( @RequestBody LivreReserveBean livreReserveBean);
+ @PutMapping(value = "/microservice-librairie/modifListeReserve")
+ LivreReserveBean modifListeReserve(@RequestBody LivreReserveBean livreReserveBean);
 
  @GetMapping(value = "/microservice-librairie/location")
  List<LivreReserveBean> findByLocation(@RequestParam(name = "num") long num);
 
- @GetMapping(value = "/microservice-librairie/librairies/{id}")
- LibrairieBean recupererUnLivre(@PathVariable("id") long id);
+ @GetMapping(value = "/microservice-librairie/librairie")
+ LibrairieBean recupererUnLivre(@RequestParam(name="id",defaultValue = " ")long id);
 
  @PostMapping(value = "/microservice-librairie/librairies")
  LibrairieBean saveLivre(@RequestBody LibrairieBean livre);
@@ -49,16 +52,25 @@ public interface MlibrairieProxy {
 
 
  @GetMapping(value = "/microservice-librairie/librairies")
- List<LibrairieBean> listDesLivres(@RequestParam(name = "motClefAuteur",defaultValue ="") String motClefAuteur,
-                                   @RequestParam(name = "motClefTitre",defaultValue ="") String motClefTitre
-                                   ,@RequestParam(name="page",defaultValue = "0")int page,
-                                   @RequestParam(name="size",defaultValue = "5")int size);
+ List<LibrairieBean> listDesLivres(@RequestParam(name = "motClefAuteur", defaultValue = "") String motClefAuteur,
+                                   @RequestParam(name = "motClefTitre", defaultValue = "") String motClefTitre
+                                  ,@RequestParam(name = "page", defaultValue = "0") int page,
+                                   @RequestParam(name = "size", defaultValue = "8") int size);
 
 
+ @GetMapping(value = "/microservice-librairie/genreAll")
+ List<GenreBean> genreLivreAll();
+
+
+ @GetMapping(value = "/microservice-librairie/genre")
+  List<LibrairieBean> findByGenre(@RequestParam(name = "genre",defaultValue =" " ) String genre ,
+                                  @RequestParam(name = "page", defaultValue = "0") int page,
+                                  @RequestParam(name = "size", defaultValue = "8") int size);
+
+ @GetMapping(value = "/microservice-librairie/genre/{id}")
+ Optional<GenreBean> GenreLivre(@PathVariable("id") int id);
 
 }
-
-
 
 
 

@@ -21,7 +21,7 @@ public class Librairie implements Serializable {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    String genre;
+    /*String genre;*/
     @Column(name = "titre",length = 30)
     String titre;
     String auteur;
@@ -29,5 +29,8 @@ public class Librairie implements Serializable {
     Integer nExemplaire;
     String photo;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "genre_id")
+    Genre genre;
 
 }

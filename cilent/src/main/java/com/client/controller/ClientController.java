@@ -1,6 +1,7 @@
 package com.client.controller;
 
 
+import com.client.bean.GenreBean;
 import com.client.bean.LibrairieBean;
 import com.client.bean.LivreReserveBean;
 import com.client.bean.UserBean;
@@ -49,7 +50,7 @@ public class ClientController {
     public String accueil(Model model,@RequestParam(name = "motClefAuteur",defaultValue ="") String motClefAuteur,
                           @RequestParam(name = "motClefTitre",defaultValue ="") String motClefTitre
                           ,@RequestParam(name="page",defaultValue = "0")int page,
-                          @RequestParam(name="size",defaultValue = "6")int size) {
+                          @RequestParam(name="size",defaultValue = "8")int size) {
         log.info("Envoi requête vers microservice-produits");
         List<LibrairieBean> pageLivres = mlibrairieProxy.listDesLivres( motClefAuteur,motClefTitre,page,size);
       /*  int pagesCount=pageLivres.getTotalPages();
@@ -57,12 +58,38 @@ public class ClientController {
         for (int i=0;i<pagesCount;i++) pages[i]=i;
         model.addAttribute("pages",pages);*/
         model.addAttribute("pageLivres", pageLivres);
+        List<GenreBean>genres=mlibrairieProxy.genreLivreAll();
+        model.addAttribute("genres",genres);
         return "Accueil";
     }
+    @RequestMapping("/selectionParGenre")
+    public String selectionParGenre(Model model,@RequestParam(name = "genre",defaultValue =" ") String genre,
+            @RequestParam(name="page",defaultValue = "0")int page,
+            @RequestParam(name="size",defaultValue = "8")int size) {
+        log.info("Envoi requête vers microservice-produits");
+        List<LibrairieBean> pageLivres = mlibrairieProxy.findByGenre(genre,page,size);
+      /*  int pagesCount=pageLivres.getTotalPages();
+        int[]pages=new int[pagesCount];
+        for (int i=0;i<pagesCount;i++) pages[i]=i;
+        model.addAttribute("pages",pages);*/
+        model.addAttribute("pageLivres", pageLivres);
+        List<GenreBean>genres=mlibrairieProxy.genreLivreAll();
+        model.addAttribute("genres",genres);
+        return "Accueil";
+    }
+
     @RequestMapping("/login")
     public String login(){
         return "login";
     }
+
+    @RequestMapping("/detailLivre")
+    public String detailLivre(Model model,@RequestParam(name="id",defaultValue = " ")long id){
+    LibrairieBean detailLivre = mlibrairieProxy.recupererUnLivre(id);
+    model.addAttribute("detailLivre",detailLivre);
+        return "detailLivre";
+    }
+
 
 
     @RequestMapping("/userLocation")

@@ -9,12 +9,7 @@ package com.microservicelibrairie.dao;
         import java.util.List;
 
 public interface LibrairieRepository extends JpaRepository<Librairie,Long> {
-
-
-    List<Librairie> findByAuteurContainingIgnoreCaseAndTitreContainingIgnoreCase(String motClefAuteur, String motClefTitre,Pageable pageable);
-
-
-
-
-
+    List<Librairie>findByGenre_Genre(String genre,Pageable pageable);
+    List<Librairie>findByAuteurContainingIgnoreCaseAndTitreContainingIgnoreCase(String motClefAuteur, String motClefTitre,Pageable pageable);
+    List<Librairie>findByGenre_Id(int id,Pageable pageable);
 }

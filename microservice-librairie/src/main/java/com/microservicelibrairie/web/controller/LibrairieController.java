@@ -1,12 +1,15 @@
 package com.microservicelibrairie.web.controller;
 
 import com.microservicelibrairie.config.ApplicationLibrairieConfig;
+import com.microservicelibrairie.dao.GenresRepository;
 import com.microservicelibrairie.dao.LibrairieRepository;
 import com.microservicelibrairie.dao.LivreRepository;
 import com.microservicelibrairie.dao.UserReservationDao;
+import com.microservicelibrairie.entities.Genre;
 import com.microservicelibrairie.entities.Librairie;
 import com.microservicelibrairie.entities.LivreReserve;
 import com.microservicelibrairie.entities.UserReservation;
+import com.microservicelibrairie.web.exceptions.GenreNotFoundException;
 import com.microservicelibrairie.web.exceptions.ImpossibleAjouterUnLivreException;
 import com.microservicelibrairie.web.exceptions.ImpossibleAjouterUneReservationException;
 import com.microservicelibrairie.web.exceptions.LivreNotFoundException;
@@ -31,6 +34,9 @@ public class LibrairieController {
     LivreRepository livreRepository;
     @Autowired
     UserReservationDao userReservationDao;
+    @Autowired
+    GenresRepository genresRepository;
+
 
     @Value("${dir.images}")
     private String imageDir;
@@ -54,6 +60,7 @@ public class LibrairieController {
                                          @RequestParam(name="size",defaultValue = "5")Integer size,
                                          @RequestParam(name = "motClefAuteur",defaultValue ="") String motClefAuteur,
                                          @RequestParam(name = "motClefTitre",defaultValue ="") String motClefTitre
+
                                         ) {
        List<Librairie>Pagelivres= librairieRepository.findByAuteurContainingIgnoreCaseAndTitreContainingIgnoreCase(
                 motClefAuteur,motClefTitre,PageRequest.of(page,size,Sort.by("titre").descending()));
@@ -62,11 +69,22 @@ public class LibrairieController {
 
 
     }
+
+
     @GetMapping(value = "/location")
     public List<LivreReserve> findByLocation(@RequestParam(name = "num") long num){
         List<LivreReserve> livresLocation=livreRepository.findByIdClient(num) ;
 
            return livresLocation;
+
+    }
+    @GetMapping(value = "/genre")
+    public List<Librairie> findByGenre(  @RequestParam(name = "genre",defaultValue =" " )String genre,
+                                         @RequestParam(name="page",defaultValue = "0")Integer page,
+                                         @RequestParam(name="size",defaultValue = "8")Integer size){
+        List<Librairie>Genrelivres= librairieRepository.findByGenre_Genre(genre,PageRequest.of(page,size,Sort.by("titre").descending()));
+
+        return Genrelivres;
 
     }
 
@@ -75,10 +93,22 @@ public class LibrairieController {
         return livreRepository.findAll();
     }
 
+    @GetMapping(value="genreAll")
+    public  List<Genre>genreLivreAll(){
+        return genresRepository.findAll();
+    }
+
+    @GetMapping(value = "/genre/{id}")
+    public Optional<Genre>GenreLivre(@PathVariable("id") int id){
+        Optional<Genre>genre=genresRepository.findById(id);
+        if(!genre.isPresent()) throw new GenreNotFoundException("Ce genre de livre n'existe pas");
+        return genre;
+    }
 
 
-    @GetMapping(value = "/librairies/{id}")
-    public Optional<Librairie>recupererUnLivre(@PathVariable("id") long id){
+
+    @GetMapping(value = "/librairie")
+    public Optional<Librairie>recupererUnLivre(@RequestParam(name="id",defaultValue = " ")long id){
         Optional<Librairie>livre=librairieRepository.findById(id);
         if(!livre.isPresent()) throw new LivreNotFoundException("Ce livre n'existe pas");
         return livre;
