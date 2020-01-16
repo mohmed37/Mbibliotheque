@@ -6,6 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -17,12 +20,15 @@ import java.util.Date;
 
 public class LibrairieBean {
     Long id;
-    String genre;
     String titre;
     String auteur;
     String resume;
     Integer nExemplaire;
     String photo;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "genre_id")
+    GenreBean genre;
 
     @Override
     public String toString() {

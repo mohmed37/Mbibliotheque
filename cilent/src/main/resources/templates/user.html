@@ -10,6 +10,11 @@
 
 </head>
 <style>
+    body {
+
+        background-image:url(../static/css/css/photo/fond.jpg);
+    }
+
     .user-row {
         margin-bottom: 14px;
     }
@@ -76,7 +81,7 @@
                                     <td th:text="${userConnect.nom}"></td>
                                 </tr>
                                 <tr>
-                                    <td>Téléphone</td>
+                                    <td>Téléphone:</td>
                                     <td th:text="${userConnect.phone}"></td>
                                 </tr>
 
@@ -85,7 +90,7 @@
                                     <td th:text="${userConnect.getDateCreatedString(userConnect.date)}"></td>
                                 </tr>
                                 <tr>
-                                    <td>E-Mail</td>
+                                    <td>E-Mail:</td>
                                     <td th:text="${userConnect.email}"><a href="mailto:info@support.com"></a></td>
                                 </tr>
 
@@ -99,7 +104,7 @@
         </div>
     </div>
 </div>
-</div>
+</div></br>
 
 <!--<div class="container">
     <div class="row">

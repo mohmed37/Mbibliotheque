@@ -5,12 +5,12 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="../static/css/css/photo/myStyle.css" >
+
     <title>Mlibrairie</title>
     <style>
-        body
-        {
-            background:white;
+        body {
+
+            background-image:url(../static/css/css/photo/fond.jpg);
         }
 
         h1
@@ -45,19 +45,12 @@
             transition: all 0.5s ease;
         }
 
-
-
     </style>
 
 </head>
 <body>
-<div class="container"  th:fragment="header">
-    <div class="jumbotron text-center" style="background-color:#ffffff" >
+<div class="container-fluid "  th:fragment="header">
 
-        <img  th:src="@{getPhoto(id=100)}" class="img-fluid" />
-
-
-    </div>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <a class="navbar-brand" href="/">Accueil</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -76,13 +69,16 @@
                     <a class="nav-link" onclick="window.location.href='form'; return false;">Nouveau livre</a>
                 </li>
                 </div>
-                <li class="nav-item">
-                    <a class="nav-link"onclick="window.location.href='login'; return false;">Me connecter</a>
+                <li class="navbar-right">
+                    <button class="btn btn-danger" onclick="window.location.href='login'; return false;">Me connecter</button>
                 </li>
 
             </ul>
 
             </ul>
+        </div>
+        <div style="background-color:#ffffff" >
+            <img  th:src="@{getPhoto(id=100)}" class="img" style="width: 120px;" />
         </div>
     </nav>
 

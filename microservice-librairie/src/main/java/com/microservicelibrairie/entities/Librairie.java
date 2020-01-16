@@ -21,7 +21,6 @@ public class Librairie implements Serializable {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    /*String genre;*/
     @Column(name = "titre",length = 30)
     String titre;
     String auteur;

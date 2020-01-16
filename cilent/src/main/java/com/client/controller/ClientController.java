@@ -52,26 +52,21 @@ public class ClientController {
                           ,@RequestParam(name="page",defaultValue = "0")int page,
                           @RequestParam(name="size",defaultValue = "8")int size) {
         log.info("Envoi requête vers microservice-produits");
-        List<LibrairieBean> pageLivres = mlibrairieProxy.listDesLivres( motClefAuteur,motClefTitre,page,size);
-      /*  int pagesCount=pageLivres.getTotalPages();
-        int[]pages=new int[pagesCount];
-        for (int i=0;i<pagesCount;i++) pages[i]=i;
-        model.addAttribute("pages",pages);*/
-        model.addAttribute("pageLivres", pageLivres);
+        LibraryResponse pageLivres = mlibrairieProxy.listDesLivres( motClefAuteur,motClefTitre,page,size);
+        int pagesCount1=pageLivres.getContent().size();
+        int[]pages=new int[pagesCount1];
+        for (int j=0;j<pagesCount1;j++) pages[j]=j;
+        model.addAttribute("pages",pages);
+        model.addAttribute("pageLivres", pageLivres.getContent());
+        model.addAttribute("pageCourant",page);
         List<GenreBean>genres=mlibrairieProxy.genreLivreAll();
         model.addAttribute("genres",genres);
         return "Accueil";
     }
     @RequestMapping("/selectionParGenre")
-    public String selectionParGenre(Model model,@RequestParam(name = "genre",defaultValue =" ") String genre,
-            @RequestParam(name="page",defaultValue = "0")int page,
-            @RequestParam(name="size",defaultValue = "8")int size) {
+    public String selectionParGenre(Model model,@RequestParam(name = "genre",defaultValue =" ") String genre) {
         log.info("Envoi requête vers microservice-produits");
-        List<LibrairieBean> pageLivres = mlibrairieProxy.findByGenre(genre,page,size);
-      /*  int pagesCount=pageLivres.getTotalPages();
-        int[]pages=new int[pagesCount];
-        for (int i=0;i<pagesCount;i++) pages[i]=i;
-        model.addAttribute("pages",pages);*/
+        List<LibrairieBean> pageLivres = mlibrairieProxy.findByGenre(genre);
         model.addAttribute("pageLivres", pageLivres);
         List<GenreBean>genres=mlibrairieProxy.genreLivreAll();
         model.addAttribute("genres",genres);
@@ -115,23 +110,28 @@ public class ClientController {
         model.addAttribute("livre",livre);
         UserBean userConnec=userService.getUserConnec();
         model.addAttribute("userConnect",userConnec);
+        List<GenreBean> genres=mlibrairieProxy.genreLivreAll();
+        model.addAttribute("genres",genres);
         return "formLivre";
     }
 
     @RequestMapping("/save")
     public String saveLivre(@Valid @ModelAttribute("livre")LibrairieBean livre,
-                            @RequestParam(name = "picture") MultipartFile file) throws IOException {
+                            @RequestParam(name = "picture") MultipartFile file,@RequestParam("iDgenre") int iDgenre) throws IOException {
 
        /* if(!(file.isEmpty())){
             livre.setPhoto(file.getOriginalFilename());
         }*/
+
+       livre.setGenre(mlibrairieProxy.GenreLivre(iDgenre).get());
+
         livre = mlibrairieProxy.saveLivre(livre);
         if(!(file.isEmpty())){
             livre.setPhoto(file.getOriginalFilename());
             file.transferTo(new File(imageDir+livre.getId()));
         }
         mlibrairieProxy.saveLivre(livre);
-        return "redirect:/";
+        return "redirect:/form";
    }
     @RequestMapping(value = "/getPhoto",produces = MediaType.IMAGE_JPEG_VALUE)
     @ResponseBody

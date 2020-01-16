@@ -5,6 +5,7 @@ package com.client.proxies;
 import com.client.bean.GenreBean;
 import com.client.bean.LibrairieBean;
 import com.client.bean.LivreReserveBean;
+import com.client.controller.LibraryResponse;
 import org.springframework.cloud.netflix.ribbon.RibbonClient;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.data.domain.Page;
@@ -52,10 +53,10 @@ public interface MlibrairieProxy {
 
 
  @GetMapping(value = "/microservice-librairie/librairies")
- List<LibrairieBean> listDesLivres(@RequestParam(name = "motClefAuteur", defaultValue = "") String motClefAuteur,
-                                   @RequestParam(name = "motClefTitre", defaultValue = "") String motClefTitre
-                                  ,@RequestParam(name = "page", defaultValue = "0") int page,
-                                   @RequestParam(name = "size", defaultValue = "8") int size);
+ LibraryResponse listDesLivres(@RequestParam(name = "motClefAuteur", defaultValue = "") String motClefAuteur,
+                               @RequestParam(name = "motClefTitre", defaultValue = "") String motClefTitre
+                               , @RequestParam(name = "page", defaultValue = "0") int page,
+                               @RequestParam(name = "size", defaultValue = "8") int size);
 
 
  @GetMapping(value = "/microservice-librairie/genreAll")
@@ -63,9 +64,7 @@ public interface MlibrairieProxy {
 
 
  @GetMapping(value = "/microservice-librairie/genre")
-  List<LibrairieBean> findByGenre(@RequestParam(name = "genre",defaultValue =" " ) String genre ,
-                                  @RequestParam(name = "page", defaultValue = "0") int page,
-                                  @RequestParam(name = "size", defaultValue = "8") int size);
+  List<LibrairieBean> findByGenre(@RequestParam(name = "genre",defaultValue =" " ) String genre);
 
  @GetMapping(value = "/microservice-librairie/genre/{id}")
  Optional<GenreBean> GenreLivre(@PathVariable("id") int id);

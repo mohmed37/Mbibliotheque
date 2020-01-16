@@ -36,7 +36,7 @@ public class EnvoiMail {
 
 
 
-    @Scheduled(cron = "0  16 14 * * * ")
+    @Scheduled(cron = "0  24 13 * * * ")
     public void sendEmail() {
 
         SimpleDateFormat formater = null;

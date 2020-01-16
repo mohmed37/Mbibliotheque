@@ -17,7 +17,7 @@ import javax.persistence.ManyToOne;
 
 public class LibrairieBean {
     Long id;
-    /*String genre;*/
+
     String titre;
     String auteur;
     String resume;

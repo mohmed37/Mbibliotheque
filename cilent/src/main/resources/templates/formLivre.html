@@ -99,10 +99,15 @@
                         <label>Auteur</label>
                         <input type="text"  th:field="*{auteur}" class="form-control"  placeholder=" Entrer l'auteur du livre"/>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" >
+
                         <label>Genre</label>
-                        <input  type="text" th:field="*{genre}"  class="form-control"  placeholder=" Entrer le genre de livre exemple:Roman, Humour.... "/>
-                    </div>
+                        <select id="iDgenre" name="iDgenre">
+                            <option value="default">Selectionner le genre de livre</option>
+                            <option th:each="genres : ${genres}" th:value="${genres.id}" th:text="${genres.genre}"></option>
+                        </select>
+
+                    </div>-->
                     <div class="form-group">
                         <label>Nombre d'exemplaire</label>
                         <input  type="text" th:field="*{NExemplaire}"  class="form-control"  placeholder=" Entrer le nombre d'emplaire disponible"/>

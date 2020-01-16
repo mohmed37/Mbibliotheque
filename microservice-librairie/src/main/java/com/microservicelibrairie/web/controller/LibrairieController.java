@@ -15,6 +15,7 @@ import com.microservicelibrairie.web.exceptions.ImpossibleAjouterUneReservationE
 import com.microservicelibrairie.web.exceptions.LivreNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
@@ -56,14 +57,14 @@ public class LibrairieController {
 
 
     @GetMapping(value = "/librairies")
-    public List<Librairie> listDesLivres(@RequestParam(name="page",defaultValue = "0")Integer page,
-                                         @RequestParam(name="size",defaultValue = "5")Integer size,
+    public Page<Librairie> listDesLivres(@RequestParam(name="page",defaultValue = "0")int page,
+                                         @RequestParam(name="size",defaultValue = "8")int size,
                                          @RequestParam(name = "motClefAuteur",defaultValue ="") String motClefAuteur,
                                          @RequestParam(name = "motClefTitre",defaultValue ="") String motClefTitre
 
                                         ) {
-       List<Librairie>Pagelivres= librairieRepository.findByAuteurContainingIgnoreCaseAndTitreContainingIgnoreCase(
-                motClefAuteur,motClefTitre,PageRequest.of(page,size,Sort.by("titre").descending()));
+       Page<Librairie>Pagelivres= librairieRepository.findByAuteurContainingIgnoreCaseAndTitreContainingIgnoreCase(
+                motClefAuteur,motClefTitre,PageRequest.of(page,size));
 
         return Pagelivres;
 
@@ -79,10 +80,8 @@ public class LibrairieController {
 
     }
     @GetMapping(value = "/genre")
-    public List<Librairie> findByGenre(  @RequestParam(name = "genre",defaultValue =" " )String genre,
-                                         @RequestParam(name="page",defaultValue = "0")Integer page,
-                                         @RequestParam(name="size",defaultValue = "8")Integer size){
-        List<Librairie>Genrelivres= librairieRepository.findByGenre_Genre(genre,PageRequest.of(page,size,Sort.by("titre").descending()));
+    public List<Librairie> findByGenre(  @RequestParam(name = "genre",defaultValue =" " )String genre){
+       List<Librairie>Genrelivres= librairieRepository.findByGenre_Genre(genre);
 
         return Genrelivres;
 
