@@ -1,12 +1,13 @@
 package com.microservicelibrairie.entities;
 
-        import lombok.*;
-        import lombok.experimental.FieldDefaults;
-        import org.springframework.format.annotation.DateTimeFormat;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
+import org.springframework.format.annotation.DateTimeFormat;
 
-        import javax.persistence.*;
-        import java.io.Serializable;
-        import java.util.Date;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 @Table(name = "LivreReserve")
@@ -17,13 +18,21 @@ package com.microservicelibrairie.entities;
 @ToString
 
 public class LivreReserve implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+
+    @NotNull
     Long idClient;
+
     Boolean prolongation=false;
+
+    @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     Date dateDeb;
+
+    @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     Date dateFin;
 

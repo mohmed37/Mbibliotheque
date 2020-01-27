@@ -10,16 +10,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-public class AppRole {
+public class AppRole implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     Long id;
+
     String role;
 }

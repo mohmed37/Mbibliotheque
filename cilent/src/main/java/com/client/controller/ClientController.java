@@ -13,7 +13,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -45,11 +44,15 @@ public class ClientController {
 
     Logger log = LoggerFactory.getLogger(this.getClass());
 
-
+    /**
+     * page d'accueil
+     * @param motClefAuteur rechercher un auteur par mot clé.
+     * @param motClefTitre  rechercher un titre par mot clé.
+     */
     @RequestMapping("/")
     public String accueil(Model model,@RequestParam(name = "motClefAuteur",defaultValue ="") String motClefAuteur,
                           @RequestParam(name = "motClefTitre",defaultValue ="") String motClefTitre
-                          ,@RequestParam(name="page",defaultValue = "0")int page,
+            ,@RequestParam(name="page",defaultValue = "0")int page,
                           @RequestParam(name="size",defaultValue = "8")int size) {
         log.info("Envoi requête vers microservice-produits");
         LibraryResponse pageLivres = mlibrairieProxy.listDesLivres( motClefAuteur,motClefTitre,page,size);
@@ -63,6 +66,11 @@ public class ClientController {
         model.addAttribute("genres",genres);
         return "Accueil";
     }
+
+    /**
+     *
+     * @param genre  rechercher par genre.
+     */
     @RequestMapping("/selectionParGenre")
     public String selectionParGenre(Model model,@RequestParam(name = "genre",defaultValue =" ") String genre) {
         log.info("Envoi requête vers microservice-produits");
@@ -73,20 +81,30 @@ public class ClientController {
         return "Accueil";
     }
 
+    /**
+     * page connection utilisateur
+     */
+
     @RequestMapping("/login")
     public String login(){
         return "login";
     }
 
+    /**
+     * @param id rechercher un livre par son Id.
+     */
+
     @RequestMapping("/detailLivre")
     public String detailLivre(Model model,@RequestParam(name="id",defaultValue = " ")long id){
-    LibrairieBean detailLivre = mlibrairieProxy.recupererUnLivre(id);
-    model.addAttribute("detailLivre",detailLivre);
+        LibrairieBean detailLivre = mlibrairieProxy.recupererUnLivre(id);
+        model.addAttribute("detailLivre",detailLivre);
         return "detailLivre";
     }
 
 
-
+    /**
+     * page compte client(ces informations et les livres reservés).
+     */
     @RequestMapping("/userLocation")
     public String user(Model model) {
         log.info("Envoi requête vers microservice-utilisateur");
@@ -94,15 +112,17 @@ public class ClientController {
         UserBean userConnec=userService.getUserConnec();
         model.addAttribute("userConnect", userConnec);
 
-      List<LivreReserveBean> livresLocation = mlibrairieProxy.findByLocation(userConnec.getNum());
-      model.addAttribute("livresLocation", livresLocation);
+        List<LivreReserveBean> livresLocation = mlibrairieProxy.findByLocation(userConnec.getNum());
+        model.addAttribute("livresLocation", livresLocation);
 
-       Date dateJour=new Date();
+        Date dateJour=new Date();
         model.addAttribute("dateJour",dateJour);
         return "user";
     }
 
-
+    /**
+     * acces au formulaire pour enregistrer un  nouveau livre en base de donnée.
+     */
 
     @RequestMapping("/form")
     public String formLivre(Model model){
@@ -115,15 +135,18 @@ public class ClientController {
         return "formLivre";
     }
 
+    /**
+     * Enregistrement du nouveau livre
+     * @param livre sauvegarde d'un livre
+     * @param file  sauvegarde de la plaquette.
+     * @param iDgenre sauvegarde du genre de livre.
+     */
+
     @RequestMapping("/save")
     public String saveLivre(@Valid @ModelAttribute("livre")LibrairieBean livre,
                             @RequestParam(name = "picture") MultipartFile file,@RequestParam("iDgenre") int iDgenre) throws IOException {
 
-       /* if(!(file.isEmpty())){
-            livre.setPhoto(file.getOriginalFilename());
-        }*/
-
-       livre.setGenre(mlibrairieProxy.GenreLivre(iDgenre).get());
+        livre.setGenre(mlibrairieProxy.GenreLivre(iDgenre).get());
 
         livre = mlibrairieProxy.saveLivre(livre);
         if(!(file.isEmpty())){
@@ -132,7 +155,12 @@ public class ClientController {
         }
         mlibrairieProxy.saveLivre(livre);
         return "redirect:/form";
-   }
+
+        /**
+         * Acces à la plaquette du livre
+         */
+
+    }
     @RequestMapping(value = "/getPhoto",produces = MediaType.IMAGE_JPEG_VALUE)
     @ResponseBody
     public byte[] getPhoto(String id) throws IOException {
@@ -140,14 +168,23 @@ public class ClientController {
         return IOUtils.toByteArray(new FileInputStream(f));
 
     }
+
+    /**
+     * @param username rechercher un utilisateur avec sans username.
+     */
     @RequestMapping(value ="/username")
     public UserBean findUserByUsername(@RequestParam(name = "username",defaultValue ="") String username) {
-       return muserProxy.findUserByUsername(username);}
+        return muserProxy.findUserByUsername(username);}
 
 
+    /**
+     * prolonger le livre de 4 semaines avec son Id.
+     * @param id
+
+     */
     @RequestMapping(value = "/prolongation")
     public String prolongation(long id){
-           mlibrairieProxy.prolongation(id);
+        mlibrairieProxy.prolongation(id);
 
         return "redirect:/userLocation";
     }

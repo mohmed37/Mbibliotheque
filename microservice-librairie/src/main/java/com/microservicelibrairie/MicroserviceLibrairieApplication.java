@@ -20,6 +20,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableDiscoveryClient
 @EnableScheduling
 public class MicroserviceLibrairieApplication {
+
     @Autowired
     LivreRepository livreRepository;
 

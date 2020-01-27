@@ -13,7 +13,7 @@ import java.util.List;
 public interface MlibrairieProxy {
 
  @GetMapping(value = "/microservice-librairie/userReservation")
-  List<UserReservationBean>userReservations();
+ List<UserReservationBean>userReservations();
 
  @GetMapping(value = "/microservice-librairie/location")
  List<LivreReserveBean> findByLocation(@RequestParam(name = "num") long num);

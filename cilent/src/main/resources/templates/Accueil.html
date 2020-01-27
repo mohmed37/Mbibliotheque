@@ -135,9 +135,33 @@
         .admin-sidenav  li:active {
             border-color: #02d3f5;
         }
-        .pagination>li>a { border-radius: 50% !important;margin: 0 5px;
-
+        .pagination1 {
+            display: inline-block;
         }
+        .pagination1 a{
+           float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            color: black;
+        }
+        .pagination1 a.active{
+            background-color: #4CAF50;
+            border: 1px solid  #4CAF50 ;
+            color:white;
+        }
+        .pagination1 a:hover:not(.active){
+            background-color: #ddd;
+        }
+        .pagination1 a:first-child{
+            border-top-left-radius:5px ;
+            border-bottom-left-radius: 5px;
+        }
+        .pagination1 a:last-child{
+            border-top-right-radius:5px ;
+            border-bottom-right-radius: 5px;
+        }
+
 
     </style>
 
@@ -181,7 +205,7 @@
 
             <div class="our-team-main"  th:href="@{detailLivre(id=${livre.id})}">
                 <div class="team-front" >
-                    <!--p>Vous voulez des détail?</br><a th:href="@{detailLivre(id=${livre.id})}" title="Vous ne le regretterez pas ! " target="_blank">Cliquer ici</a></p>-->
+
                     <img  th:src="@{getPhoto(id=${livre.id})}" class="img-fluid" />
                     <h3> <p th:text="${livre.titre}"></p></h3>
                     <p th:text="${livre.getGenre().genre}"></p>
@@ -208,19 +232,18 @@
         </div>
 
     </div>
-
 </div>
 <div class="container-fluid ">
-    <ul class="nav nav-pills">
-        <li  th:each="page : ${pages}" th:class="${page==pageCourant}?active:' '">
-            <a th:text="${page}" th:href="@{/(page=${page})}"></a>
-            <a>/</a>
-
-        </li>
-    </ul>
-
+    <div class="row">
+        <div  class="pagination1 pagination1">
+            <div class="nav nav-pills">
+                <div  th:each="page : ${pages}" th:class="${page==pageCourant}? activ :' '">
+                    <a th:text="${page}" th:href="@{/(page=${page})}"></a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div></br>
-
-<div th:insert="footer.html :: footer"></div>
 </body>
+<div th:insert="footer.html :: footer"></div>
 </html>

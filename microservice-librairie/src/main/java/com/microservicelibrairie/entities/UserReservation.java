@@ -5,10 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.List;
+import java.io.Serializable;
 
 
 @Entity
@@ -18,11 +18,14 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class UserReservation {
+public class UserReservation implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+
     Long idClient;
+
+    @Range(min=0, max=10)
     Integer nbLivre=0;
 
 

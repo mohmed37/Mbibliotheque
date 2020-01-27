@@ -8,6 +8,7 @@ import lombok.experimental.FieldDefaults;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "genre")
@@ -15,13 +16,12 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Genre {
+public class Genre implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     int id;
-
 
     @Column(name = "genre")
     String genre;
