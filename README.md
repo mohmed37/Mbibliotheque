@@ -30,8 +30,7 @@
                <li>Une pour le microservice-librairie </li>
                <li>Une pour le microservice-utilisateur </li>
               
-           </ul>
-      </li>
+           
    <li>Dans votre repo bibliotheque-config-server-repo,  modifier pour les trois microservices les informations suivantes:
    <ul>
       <li>le nom de votre base de données: jdbc.url = jdbc:postgresql://localhost:5432/"nom-de-la-base-de-données" </li>
