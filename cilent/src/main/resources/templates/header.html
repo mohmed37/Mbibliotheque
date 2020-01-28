@@ -60,14 +60,14 @@
 
             <ul class="navbar-nav">
                 <div sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')">
-                <li class="nav-item">
-                    <a class="nav-link" onclick="window.location.href='userLocation'; return false;">Mon Compte</a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="window.location.href='userLocation'; return false;">Mon Compte</a>
+                    </li>
                 </div>
                 <div sec:authorize="hasRole('ROLE_ADMIN')">
-                <li class="nav-item">
-                    <a class="nav-link" onclick="window.location.href='form'; return false;">Nouveau livre</a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="window.location.href='form'; return false;">Nouveau livre</a>
+                    </li>
                 </div>
                 <li class="navbar-right">
                     <button class="btn btn-danger" onclick="window.location.href='login'; return false;">Me connecter</button>

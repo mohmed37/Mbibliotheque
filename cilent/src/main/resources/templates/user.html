@@ -60,80 +60,52 @@
     <div class="row">
         <div class="col-md-12 ">
 
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
 
 
-            <div class="panel panel-info">
-                <div class="panel-heading">
-                    <h2>Mes informations</h2>
-                </div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class=" col-md-9 col-lg-9 ">
-                            <table class="table table-striped">
-                                <tbody class="thead-light">
-                                <tr>
-                                    <td>Prénom:</td>
-                                    <td th:text="${userConnect.prenom}"></td>
-                                </tr>
-                                <tr>
-                                    <td>Non:</td>
-                                    <td th:text="${userConnect.nom}"></td>
-                                </tr>
-                                <tr>
-                                    <td>Téléphone:</td>
-                                    <td th:text="${userConnect.phone}"></td>
-                                </tr>
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h2>Mes informations</h2>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class=" col-md-9 col-lg-9 ">
+                                <table class="table table-striped">
+                                    <tbody class="thead-light">
+                                    <tr>
+                                        <td>Prénom:</td>
+                                        <td th:text="${userConnect.prenom}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Non:</td>
+                                        <td th:text="${userConnect.nom}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Téléphone:</td>
+                                        <td th:text="${userConnect.phone}"></td>
+                                    </tr>
 
-                                <tr>
-                                    <td>Date d'inscription:</td>
-                                    <td th:text="${userConnect.getDateCreatedString(userConnect.date)}"></td>
-                                </tr>
-                                <tr>
-                                    <td>E-Mail:</td>
-                                    <td th:text="${userConnect.email}"><a href="mailto:info@support.com"></a></td>
-                                </tr>
+                                    <tr>
+                                        <td>Date d'inscription:</td>
+                                        <td th:text="${userConnect.getDateCreatedString(userConnect.date)}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>E-Mail:</td>
+                                        <td th:text="${userConnect.email}"><a href="mailto:info@support.com"></a></td>
+                                    </tr>
 
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                </div>
 
+                </div>
             </div>
         </div>
     </div>
-</div>
 </div></br>
 
-<!--<div class="container">
-    <div class="row">
-
-        <h2>Mes informations</h2></br>
-        <table class="table table-striped">
-            <thead class="thead-light">
-            <tr>
-                <th>Prénom</th>
-                <th>Nom</th>
-                <th>Identifianr</th>
-                <th>Mot de passe</th>
-                <th>Téléphone</th>
-                <th>Date d'inscription</th>
-                <th>E-Mail</th>
-            </tr>
-            </thead>
-
-                    <td th:text="${userConnect.prenom}"></td>
-                    <td th:text="${userConnect.nom}"></td>
-                    <td th:text="${userConnect.username}"></td>
-                    <td th:text="${userConnect.password}" ></td>
-                    <td th:text="${userConnect.phone}"></td>
-                    <td th:text="${userConnect.getDateCreatedString(userConnect.date)}"></td>
-                    <td th:text="${userConnect.email}"></td>
-
-        </table>
-    </div>
-</div></br>-->
 <div class="container">
     <div class="row">
         <h2>Liste des livres</h2></br>
@@ -148,16 +120,16 @@
             </tr>
             </thead>
             <tbody>
-        <tr th:each="livrelocation : ${livresLocation}" class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
+            <tr th:each="livrelocation : ${livresLocation}" class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
 
-           <td th:text="${livrelocation.getLibrairie().titre}"></td>
-            <td th:text="${livrelocation.getDateCreatedString(livrelocation.dateDeb)}" ></td>
-            <td th:text="${livrelocation.getDateCreatedString(livrelocation.dateFin)}"></td>
-            <td><a  th:if="${dateJour.before(livrelocation.dateFin) && livrelocation.getProlongation()==false} "
-                    th:href="@{prolongation(id=${livrelocation.id})}">Prolongation</a></td>
-        </tr>
+                <td th:text="${livrelocation.getLibrairie().titre}"></td>
+                <td th:text="${livrelocation.getDateCreatedString(livrelocation.dateDeb)}" ></td>
+                <td th:text="${livrelocation.getDateCreatedString(livrelocation.dateFin)}"></td>
+                <td><a  th:if="${dateJour.before(livrelocation.dateFin) && livrelocation.getProlongation()==false} "
+                        th:href="@{prolongation(id=${livrelocation.id})}">Prolongation</a></td>
+            </tr>
 
-          </tbody>
+            </tbody>
 
         </table>
     </div>
